@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 {% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
 <div class="container">
-    <h1>Register</h1>
+    <h1>Inscription</h1>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.Nom) }}
@@ -15,8 +15,7 @@
         {{ form_row(registrationForm.Password, {
             label: 'Password'
         }) }}
-
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
     {{ form_end(registrationForm) }}
 </div>
 {% endblock %}
