@@ -21,24 +21,13 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('app_home')}}">Accueil</a>
-                    </li>
-                </ul>
+                    <a class="nav-link" href="{{ path('app_home')}}">Accueil</a> 
                 {% if app.user == null %}
-                <ul class="navbar-nav ml-auto">
-                    <a class="nav-link" href="{{ path('app_register')}}">S'inscrire </a>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <a class="nav-link" href="{{ path('app_login')}}">Se connecter </a>
-                </ul>
+                    <button class="btn btn-outline-success" type="button"><a class="nav-link" href="{{ path('app_register')}}">S'inscrire </a></button>
+                    <button class="btn btn-outline-success" type="button"><a class="nav-link" href="{{ path('app_login')}}">Se connecter </a></button>
                 {% else %}
-                <ul class="navbar-nav ml-auto">
-                    <a class="nav-link" href="{{ path('app_logout')}}">Se déconnecter </a>
-                </ul>
+                    <button class="btn btn-outline-success" type="button"><a class="nav-link" href="{{ path('app_logout')}}">Se déconnecter </a></button>
                 {% endif %}
-
             </div>
         </nav>
         {% block body %}{% endblock %}
