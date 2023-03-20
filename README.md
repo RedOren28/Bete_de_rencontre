@@ -1,6 +1,7 @@
 # Bete_de_rencontre
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/RedOren28/Bete_de_rencontre)
 ![stable](https://img.shields.io/badge/stability-stable-brightgreen.svg)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f83ce79658104cda9371dcfccd39d2e3)](https://app.codacy.com/gh/RedOren28/Bete_de_rencontre?utm_source=github.com&utm_medium=referral&utm_content=RedOren28/Bete_de_rencontre&utm_campaign=Badge_Grade)
 [![Build status](https://ci.appveyor.com/api/projects/status/pvoiujbphmt4figl?svg=true)](https://ci.appveyor.com/project/RedOren28/bete-de-rencontre)
 <img src="https://img.shields.io/badge/Symfony-5.2.3-purple.svg?style=flat-square&logo=symfony" alt="Symfony 5.2.3"/>
 ![GitHub language count](https://img.shields.io/github/languages/count/RedOren28/Bete_de_rencontre)
