@@ -16,7 +16,6 @@
 [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 [![Npm package version](https://badgen.net/npm/v/express)](https://npmjs.com/package/express)
-[![Npm package license](https://badgen.net/npm/llicense/discord.js)](https://npmjs.com/package/discord.js)
 [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
  <a href="https://getbootstrap.com/docs">
     <img src="https://flat.badgen.net/badge/bootstrap/4.5.x/563d7c" alt="Bootstrap version">
