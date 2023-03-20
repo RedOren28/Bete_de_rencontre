@@ -13,3 +13,10 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/RedOren28/Bete_de_rencontre)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/RedOren28/Bete_de_rencontre)
 ![GitHub last commit](https://img.shields.io/github/last-commit/RedOren28/Bete_de_rencontre)
+[![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
+[![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
+[![Npm package version](https://badgen.net/npm/v/express)](https://npmjs.com/package/express)
+[![Npm package license](https://badgen.net/npm/llicense/discord.js)](https://npmjs.com/package/discord.js)
+[![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
+
+
