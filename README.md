@@ -16,7 +16,7 @@
 [![Npm package version](https://badgen.net/npm/v/express)](https://npmjs.com/package/express)
 [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
  <a href="https://getbootstrap.com/docs">
-    <img src="https://flat.badgen.net/badge/bootstrap/4.5.x/563d7c" alt="Bootstrap version">
+    <img src="https://flat.badgen.net/badge/bootstrap/5.2.3/563d7c" alt="Bootstrap version">
   </a>
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bd4194a94b4b49d3abc029bf78f7c4a0)](https://app.codacy.com/gh/RedOren28/Bete_de_rencontre/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![PHP Composer](https://github.com/RedOren28/Bete_de_rencontre/actions/workflows/php.yml/badge.svg)](https://github.com/RedOren28/Bete_de_rencontre/actions/workflows/php.yml)
