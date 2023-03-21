@@ -23,7 +23,7 @@
 [![GitHub](https://badgen.net/badge/icon/github?icon=github&label=RedOren28)](https://github.com/RedOren28)
 [![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20Visual%20Studio%20Code&labelColor=2c2c32&color=007acc&logoColor=007acc)](https://open.vscode.dev/microsoft/Bete_de_rencontre)
 [![discord](https://badges.aleen42.com/src/discord.svg)](https://discordapp.com/users/527197181455761449)
-[![github](https://badges.aleen42.com/src/github.svg)](https://github.com/RedOren28)
+[![RedOren28](https://badges.aleen42.com/src/github.svg)](https://github.com/RedOren28)
 ## Prérequis
 
 [![ForTheBadge built-by-developers](http://ForTheBadge.com/images/badges/built-by-developers.svg)](https://GitHub.com/RedOren28/)
