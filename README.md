@@ -21,4 +21,4 @@
   </a>
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bd4194a94b4b49d3abc029bf78f7c4a0)](https://app.codacy.com/gh/RedOren28/Bete_de_rencontre/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![PHP Composer](https://github.com/RedOren28/Bete_de_rencontre/actions/workflows/php.yml/badge.svg)](https://github.com/RedOren28/Bete_de_rencontre/actions/workflows/php.yml)
-
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/RedOren28/Bete_de_rencontre)
