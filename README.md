@@ -7,7 +7,6 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/RedOren28/Bete_de_rencontre)
 ![SymfonyInsight Grade](https://img.shields.io/symfony/i/grade/fd4760f2-bfb1-49d2-ad1a-7b344465ecd2)
 ![SymfonyInsight Stars](https://img.shields.io/symfony/i/stars/fd4760f2-bfb1-49d2-ad1a-7b344465ecd2)
-![SymfonyInsight Violations](https://img.shields.io/symfony/i/violations/fd4760f2-bfb1-49d2-ad1a-7b344465ecd2)
 ![GitHub repo file count](https://img.shields.io/github/directory-file-count/RedOren28/Bete_de_rencontre)
 ![GitHub repo size](https://img.shields.io/github/repo-size/RedOren28/Bete_de_rencontre)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/RedOren28/Bete_de_rencontre)
