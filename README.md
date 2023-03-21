@@ -21,4 +21,4 @@
 [![PHP Composer](https://github.com/RedOren28/Bete_de_rencontre/actions/workflows/php.yml/badge.svg)](https://github.com/RedOren28/Bete_de_rencontre/actions/workflows/php.yml)
 [![GitHub commits](https://badgen.net/github/commits/RedOren28/Bete_de_rencontre)](https://GitHub.com/RedOren28/Bete_de_rencontre/commit/)
 [![GitHub](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com/RedOren28)
-[![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://https://discord.com/users/527197181455761449)
+[![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https:discordapp.com/users/527197181455761449)
