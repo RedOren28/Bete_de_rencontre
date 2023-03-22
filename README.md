@@ -28,7 +28,7 @@
 ## Utilisation
 
 
-## Créer avec :
+### Créer avec :
 <!-- ![Test](https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=Tableau&logoColor=white") -->
 
 [![ForTheBadge built-by-developers](http://ForTheBadge.com/images/badges/built-by-developers.svg)](https://GitHub.com/RedOren28/)
@@ -46,14 +46,14 @@
 ![AMD](https://img.shields.io/badge/AMD%20Radeon_RX_5600_XT-ED1C24?style=for-the-badge&logo=amd&logoColor=white)
 ![Ryzen](https://img.shields.io/badge/AMD%20Ryzen_7_3700X-ED1C24?style=for-the-badge&logo=amd&logoColor=white)
 
-### Mes réseaux
+#### Mes réseaux :
 
 ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 ![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)
 ![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)
 ![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)
 
-### Stats
+#### Stats :
 
 ![Stats](https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=RedOren28)
 ![Langues](https://github-readme-stats.vercel.app/api/top-langs/?username=RedOren28)
