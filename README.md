@@ -33,8 +33,6 @@
 ### Créer avec :
 <!-- ![Test](https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=Tableau&logoColor=white") -->
 
-[![ForTheBadge built-by-developers](http://ForTheBadge.com/images/badges/built-by-developers.svg)](https://GitHub.com/RedOren28/)
-
 [![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/fr/)
 [![Apache 2](https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=Apache&logoColor=white)](https://httpd.apache.org/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
@@ -48,6 +46,8 @@
 [![Brave](https://img.shields.io/badge/Brave-FB542B?style=for-the-badge&logo=Brave&logoColor=white)](https://brave.com/fr/)
 [![AMD](https://img.shields.io/badge/AMD%20Radeon_RX_5600_XT-ED1C24?style=for-the-badge&logo=amd&logoColor=white)](https://www.amd.com/fr)
 [![Ryzen](https://img.shields.io/badge/AMD%20Ryzen_7_3700X-ED1C24?style=for-the-badge&logo=amd&logoColor=white)](https://www.amd.com/fr)
+
+[![ForTheBadge built-by-developers](http://ForTheBadge.com/images/badges/built-by-developers.svg)](https://GitHub.com/RedOren28/)
 
 #### Mes réseaux :
 
