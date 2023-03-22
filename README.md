@@ -18,9 +18,17 @@
 
 ## Prérequis
 
+- Git
+- PHP
+- VSCode
+- MySQL
+- Scoop
+- Composer
+- Symfony
 
 ## Utilisation
 
+- Fonctionnalités du site
 
 ### Créer avec :
 <!-- ![Test](https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=Tableau&logoColor=white") -->
