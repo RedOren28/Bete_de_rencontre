@@ -51,3 +51,4 @@
 ![Ryzen](https://img.shields.io/badge/AMD%20Ryzen_7_3700X-ED1C24?style=for-the-badge&logo=amd&logoColor=white)
 ![Stats](https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=RedOren28)
 ![Langues](https://github-readme-stats.vercel.app/api/top-langs/?username=RedOren28)
+![Sommaire](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=RedOren28)
