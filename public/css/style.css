@@ -1,0 +1,29 @@
+
+body{
+    background-image: url("../theme_vert.png");
+}
+
+.form-label{
+display: block;
+}
+
+form{
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    background-color: rgba(5, 95, 53, 0.2);
+    padding: 35px;
+    border-radius: 15px;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-success:hover{
+    color:green;
+    background-color: white;
+    display: flex;
+    justify-content: end;
+
+}
