@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Form\EditProfileType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class EditProfileController extends AbstractController
@@ -12,7 +14,7 @@ class EditProfileController extends AbstractController
     public function edit(Request $request)
     {
         $user = $this->getUser();
-        $form = $this->createForm(ProfileType::class, $user);
+        $form = $this->createForm(EditProfileType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -23,7 +25,7 @@ class EditProfileController extends AbstractController
             return $this->redirectToRoute('profile_edit');
         }
 
-        return $this->render('profile/edit.html.twig', [
+        return $this->render('edit_profile/profile.html.twig', [
             'form' => $form->createView(),
         ]);
     }
