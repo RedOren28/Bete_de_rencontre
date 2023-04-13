@@ -4,22 +4,22 @@
 
 {% block body %}
 <div class="container">
-    <h1>Inscription</h1>
+    <div class="d-flex justify-content-center p-4 mt-4">
+        {{ form_start(registrationForm, {'attr': {'class': 'col-5'}} ) }}
+            <h1 class="h3 mb-3 font-weight-normal">Inscription :</h1>
 
-        <div class="d-flex justify-content-center p-4 mt-4">
-    {{ form_start(registrationForm, {'attr': {'class': 'col-5'}} ) }}
-
-        {{ form_row(registrationForm.Nom) }}
-        {{ form_row(registrationForm.Prenom) }}
-        {{ form_row(registrationForm.Date_Naissance) }}
-        {{ form_row(registrationForm.Adresse) }}
-        {{ form_row(registrationForm.Email) }}
-        {{ form_row(registrationForm.Password, {
-            label: 'Password'
-        }) }}
-        <button class="btn btn-success d-flex align-items-end " type="submit">S'inscrire</button>
-
-    {{ form_end(registrationForm) }}
+            {{ form_row(registrationForm.Nom) }}
+            {{ form_row(registrationForm.Prenom) }}
+            {{ form_row(registrationForm.Date_Naissance) }}
+            {{ form_row(registrationForm.Adresse) }}
+            {{ form_row(registrationForm.Email) }}
+            {{ form_row(registrationForm.Password, {
+                label: 'Password'
+            }) }}
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-success" type="submit">S'inscrire</button>
             </div>
+        {{ form_end(registrationForm) }}
+    </div>
 </div>
 {% endblock %}

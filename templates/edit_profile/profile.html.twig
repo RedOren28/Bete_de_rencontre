@@ -4,6 +4,42 @@
 
 {% block body %}
 
-<h1>Profil</h1>
+
+{% include 'edit_profile/edit.html.twig' %}
+    
+<div class="container my-3">
+    <h1>Profil de {{app.user.Nom}} {{app.user.Prenom}}</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+                    <li>
+						<strong>Nom:</strong>
+						{{app.user.Nom}}
+                    </li><br>
+					<li>
+						<strong>Prénom:</strong>
+						{{app.user.Nom}}
+                    </li>
+					<li><br>
+                        <strong>Date de naissance:</strong>
+                       {{ app.user.getDateNaissance()|date('d/m/Y') }}
+                    </li>
+					<li><br>
+						<strong>Adresse:</strong>
+						{{app.user.Adresse}}
+					</li>
+					<li><br>
+						<strong>Email:</strong>
+						{{app.user.email }}
+					</li>
+				</ul>
+			</div>
+		</div>
+		<button type="button" class="btn btn-light my-3" data-toggle="modal" data-target="#editProfileModal">
+  			{{ 'Edit Profile'|trans }}
+		</button>
+	</div>
+</div>
 
 {% endblock %}

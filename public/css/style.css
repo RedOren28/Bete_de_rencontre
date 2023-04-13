@@ -1,4 +1,3 @@
-
 body{
     background-image: url("../theme_vert.png");
 }
@@ -25,5 +24,4 @@ h1{
     background-color: white;
     display: flex;
     justify-content: end;
-
 }
