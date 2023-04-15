@@ -7,38 +7,40 @@
 
 {% include 'edit_profile/edit.html.twig' %}
     
-<div class="container my-3">
-    <h1>Profil de {{app.user.Nom}} {{app.user.Prenom}}</h1>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-3">
-				<ul class="list-unstyled">
-                    <li>
-						<strong>Nom:</strong>
-						{{app.user.Nom}}
-                    </li><br>
-					<li>
-						<strong>Prénom:</strong>
-						{{app.user.Nom}}
-                    </li>
-					<li><br>
-                        <strong>Date de naissance:</strong>
-                       {{ app.user.getDateNaissance()|date('d/m/Y') }}
-                    </li>
-					<li><br>
-						<strong>Adresse:</strong>
-						{{app.user.Adresse}}
-					</li>
-					<li><br>
-						<strong>Email:</strong>
-						{{app.user.email }}
-					</li>
-				</ul>
-			</div>
-		</div>
-		<button type="button" class="btn btn-light my-3" data-toggle="modal" data-target="#editProfileModal">
-  			{{ 'Edit Profile'|trans }}
-		</button>
+<div class="container form">
+	<div class="d-flex justify-content-center p-4 mt-4" >
+		<form>
+			<ul class="list-unstyled">
+				<li>
+					<h1 class="h3 mb-3 font-weight-normal">Profil de {{app.user.Nom}} {{app.user.Prenom}}</h1>
+				</li>
+            	<li>
+					<strong>Nom:</strong>
+					{{app.user.Nom}}
+            	</li><br>
+				<li>
+					<strong>Prénom:</strong>
+					{{app.user.Nom}}
+            	</li>
+				<li><br>
+                	<strong>Date de naissance:</strong>
+                	{{ app.user.getDateNaissance()|date('d/m/Y') }}
+            	</li>
+				<li><br>
+					<strong>Adresse:</strong>
+					{{app.user.Adresse}}
+				</li>
+				<li><br>
+					<strong>Email:</strong>
+					{{app.user.email }}
+				</li>
+			</ul>
+			<div class="d-flex justify-content-end">
+        		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editProfileModal">
+  					{{ 'Edit Profile'|trans }}
+				</button>
+    		</div>
+		</form>	
 	</div>
 </div>
 

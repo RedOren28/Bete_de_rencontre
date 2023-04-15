@@ -3,7 +3,7 @@ body{
 }
 
 .form-label{
-display: block;
+    display: block;
 }
 
 form{
@@ -21,6 +21,13 @@ h1{
 
 .btn-success:hover{
     color:green;
+    background-color: white;
+    display: flex;
+    justify-content: end;
+}
+
+.btn-danger:hover{
+    color:red;
     background-color: white;
     display: flex;
     justify-content: end;

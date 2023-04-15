@@ -2,7 +2,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+				<h5 class="modal-title" id="editProfileModalLabel">Modifier mon profil</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -10,9 +10,9 @@
 			<div class="modal-body">
 				{{ form_start(form) }}
 				{{ form_widget(form) }}
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-dark">Save changes</button>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-danger mx-1" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
                     </div>
 				{{ form_end(form) }}
 			</div>
