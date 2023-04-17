@@ -49,6 +49,7 @@ class EditProfileType extends AbstractType
                     ]),
                 ],
             ])
+
             /** AgreeTerms (CheckBox)
              * 
              * ->add('agreeTerms', CheckboxType::class, [

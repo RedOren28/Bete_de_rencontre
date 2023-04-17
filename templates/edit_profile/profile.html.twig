@@ -7,7 +7,7 @@
 
 {% include 'edit_profile/edit.html.twig' %}
     
-<div class="container form">
+<div class="container">
 	<div class="d-flex justify-content-center p-4 mt-4" >
 		<form>
 			<ul class="list-unstyled">
@@ -39,6 +39,20 @@
         		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editProfileModal">
   					{{ 'Modifier mon Profil'|trans }}
 				</button>
+    		</div>
+		</form>	
+	</div>
+</div>
+<div class="container">
+	<div class="d-flex justify-content-center p-4 mt-4" >
+		<form>
+			<ul class="list-unstyled">
+				<li>
+					<h1 class="h3 mb-3 font-weight-normal">Mes Annonces</h1>
+				</li>
+			</ul>
+			<div class="d-flex justify-content-end">
+        		<button class="btn btn-success mx-1" type="button"><a class="nav-link" href="">Ajouter une annonce</a></button>
     		</div>
 		</form>	
 	</div>

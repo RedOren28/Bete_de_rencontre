@@ -22,7 +22,7 @@ class EditProfileController extends AbstractController
 
             $this->addFlash('success', 'Your profile has been updated.');
 
-            return $this->redirectToRoute('profile_edit');
+            return $this->redirectToRoute('app_profile_edit');
         }
 
         return $this->render('edit_profile/profile.html.twig', [

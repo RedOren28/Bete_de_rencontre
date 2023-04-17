@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link col align-middle" href="{{ path('app_home')}}">Accueil</a>
+                        <a class="nav-link col align-middle" href="{{ path('app_home')}}">Annonces</a>
                     </li>
                 </ul>
                 <div class="my-2 my-lg-0">
@@ -37,8 +37,13 @@
                         <li class="nav-item active">
                             <a class="nav-link col align-middle" href="{{ path('app_edit_profile')}}">Profil</a>
                         </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('admin') }}">Admin</a>
+                            </li>
+                        {% endif %}
                         <li>
-                            <a class="btn btn-outline-success" href="{{ path('app_logout')}}">Se déconnecter </a></button>
+                            <button class="btn btn-outline-success" href="{{ path('app_logout')}}">Se déconnecter </a></button>
                         </li>
                     </ul>    
                     {% endif %}
