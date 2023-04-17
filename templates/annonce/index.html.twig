@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonces{% endblock %}
+
+{% block body %}
+<div class="row" style= "text-align: center">
+    <h1>Annonces :</h1>
+    {% for annonce in annonces %}
+    <div class="card" style="width:300px; margin:8px; text-align: center">
+        <a href="{{path('app_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">
+            <h4 class="card-title">{{annonce.titre}}</h4>
+            <p class="card-text">{{annonce.description}}</p>  
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+

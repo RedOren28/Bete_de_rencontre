@@ -162,43 +162,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-     /**
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Annonce", mappedBy="user")
      */
     private $annonces;
-
-    public function __construct()
-    {
-        $this->annonces = new ArrayCollection();
-    }
-
-    /**
-     * @return Collection|Annonce[]
-     */
-    public function getAnnonce(): Collection
-    {
-        return $this->annonces;
-    }
-
-    public function addAnnonce(Annonce $annonce): self
-    {
-        if (!$this->annonces->contains($annonce)) {
-            $this->annonces[] = $annonce;
-            $annonce->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnnonce(Annonce $annonce): self
-    {
-        if ($this->annonces->removeElement($annonce)) {
-            // set the owning side to null (unless already changed)
-            if ($annonce->getUser() === $this) {
-                $annonce->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 }
