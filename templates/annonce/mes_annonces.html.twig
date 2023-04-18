@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes annonces{% endblock %}
+
+{% block body %}
+
+{% include 'annonce/edit.html.twig' %}
+
+<div class="row" style= "text-align: center">
+    <h1>Mes annonces :</h1>
+    {% for annonce in annonces %}
+    <div class="card" style="width:300px; margin:8px; text-align: center">
+        <a href="{{path('app_annonce_edit', {id:annonce.id}) }}" style="text-decoration: none; color:black">
+            <h4 class="card-title">{{annonce.titre}}</h4>
+            <p class="card-text">{{annonce.description}}</p>  
+        </a>
+        <div class="d-flex justify-content-end">				
+        	<button type="button" class="btn btn-success mx-1" data-toggle="modal" data-target="#editAnnonceModal">
+  				{{ 'Modifier'|trans }}
+			</button>
+    		<form action="{{ path('app_annonce_delete', {'id': annonce.id}) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette annonce ?')">
+    			<input type="hidden" name="_method" value="DELETE">
+    			<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ annonce.id) }}">
+    			<button type="submit" class="btn btn-danger">Supprimer</button>
+    		</form>
+		</div>	
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

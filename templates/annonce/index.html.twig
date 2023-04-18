@@ -5,14 +5,20 @@
 {% block body %}
 <div class="row" style= "text-align: center">
     <h1>Annonces :</h1>
-    {% for annonce in annonces %}
-    <div class="card" style="width:300px; margin:8px; text-align: center">
-        <a href="{{path('app_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">
-            <h4 class="card-title">{{annonce.titre}}</h4>
-            <p class="card-text">{{annonce.description}}</p>  
-        </a>
-    </div>
-    {% endfor %}
+    <ul>
+        {% for annonce in annonces %}
+        <li>
+            <div class="card" style="width:300px; margin:8px; text-align: center">
+                <a href="{{path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">
+                    <h2 class="card-title">{{ annonce.Titre }}</h2>
+                    <p class="card-text">{{ annonce.Description }}</p>
+                    <p class="card-text"><strong>Date de publication:</strong> {{ annonce.DatePublication | date('Y-m-d')}}</p>
+                    <p class="card-text"><strong>Dernière Modification:</strong> {{ annonce.DateModification | date('Y-m-d')}}</p>
+                </a>
+            </div>
+        <li>
+        {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}

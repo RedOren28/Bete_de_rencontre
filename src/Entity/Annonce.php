@@ -79,32 +79,18 @@ class Annonce
         return $this;
     }
 
-     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
+    #[ORM\ManyToOne(inversedBy: 'annonces')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
-    public function getUser(): ?string
+    public function getUser(): ?User
     {
-        return $this->Adresse;
+        return $this->user;
     }
 
-    public function setUser(?string $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

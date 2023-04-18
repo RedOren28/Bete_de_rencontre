@@ -3,18 +3,20 @@
 namespace App\Controller;
 
 use App\Form\EditProfileType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use App\Repository\AnnonceRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EditProfileController extends AbstractController
 {
     #[Route('/edit/profile', name: 'app_edit_profile')]
-    public function edit(Request $request)
+    public function edit(AnnonceRepository $repository, Request $request)
     {
         $user = $this->getUser();
         $form = $this->createForm(EditProfileType::class, $user);
+        $annonces = $repository->findBy(['user' => $this->getUser()]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -27,6 +29,7 @@ class EditProfileController extends AbstractController
 
         return $this->render('edit_profile/profile.html.twig', [
             'form' => $form->createView(),
+            'annonces' => $annonces,
         ]);
     }
 }

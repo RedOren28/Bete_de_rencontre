@@ -4,7 +4,6 @@
 
 {% block body %}
 
-
 {% include 'edit_profile/edit.html.twig' %}
     
 <div class="container">
@@ -12,7 +11,7 @@
 		<form>
 			<ul class="list-unstyled">
 				<li>
-					<h1 class="h3 mb-3 font-weight-normal">Profil de {{app.user.Nom}} {{app.user.Prenom}}</h1>
+					<h1 class="h3 mb-3 font-weight-normal">Mon profil :</h1>
 				</li>
             	<li>
 					<strong>Nom:</strong>
@@ -48,11 +47,29 @@
 		<form>
 			<ul class="list-unstyled">
 				<li>
-					<h1 class="h3 mb-3 font-weight-normal">Mes Annonces</h1>
+					<h1 class="h3 mb-3 font-weight-normal">Mes Annonces :</h1>
 				</li>
 			</ul>
+			{% if annonces is empty %}
+        	<h1>Aucune annonce à afficher.</h1>
+    		{% else %}
+			<ul class="list-unstyled">
+        		{% for annonce in annonces %}
+            	<li>
+                	<div class="card" style="width:300px; margin:8px; text-align: center">
+                    	<a href="{{path('app_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">
+                        	<h2 class="card-title">{{ annonce.titre }}</h2>
+                        	<p class="card-text">{{ annonce.description }}</p>
+                        	<p class="card-text"><strong>Date de publication:</strong> {{ annonce.DatePublication | date('Y-m-d')}}</p>
+                        	<p class="card-text"><strong>Dernière Modification:</strong> {{ annonce.DateModification | date('Y-m-d')}}</p>
+                    	</a>
+                	</div>
+            	</li>
+        		{% endfor %}
+        	</ul>
+    		{% endif %}
 			<div class="d-flex justify-content-end">
-        		<button class="btn btn-success mx-1" type="button"><a class="nav-link" href="">Ajouter une annonce</a></button>
+        		<button class="btn btn-success mx-1" type="button"><a class="nav-link" href="{{path('app_annonce_create')}}">Ajouter une annonce</a></button>
     		</div>
 		</form>	
 	</div>

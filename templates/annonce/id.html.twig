@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce {{annonce.Titre}}{% endblock %}
+
+{% block body %}
+<div class="row" style= "text-align: center">
+    <h1>Annonce {{annonce.Titre}} :</h1>
+    <div>
+        <h4 class="card-title">{{annonce.Titre}}</h4>
+        <p class="card-text">{{annonce.Description}}</p>
+    </div>
+</div>
+    
+
+{% endblock %}
