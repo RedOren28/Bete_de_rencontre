@@ -48,11 +48,33 @@ class AnnonceController extends AbstractController
     }
 
     #[Route('/annonce/read/id/{id}', name: 'app_read_annonce')]
-    public function index_id(Annonce $annonce): Response
+    public function index_id(Annonce $annonce, AnnonceRepository $repository, Request $request, EntityManagerInterface $entityManager): Response
     {
+        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $id = $annonce->getId();
+
+            $this->addFlash('success', 'Your profile has been updated.');
+
+            return $this->redirectToRoute('app_read_annonce', ['id' => $id]);
+        }
+
         return $this->render('annonce/id.html.twig', [
+            'form' => $form->createView(),
             'annonce' => $annonce
         ]);
+    }
+
+    #[Route('/annonce/{id}/delete', name: 'app_annonce_delete')]
+    public function deleteAnnonce(Annonce $annonce, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($annonce);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_mes_annonces');
     }
 
     #[Route('/annonce/{id}/edit', name: 'app_annonce_edit')]
@@ -70,15 +92,6 @@ class AnnonceController extends AbstractController
         return $this->render('annonce/edit.html.twig', [
             'form' => $form->createView(),
         ]);
-    }
-
-    #[Route('/annonce/{id}/delete', name: 'app_annonce_delete')]
-    public function deleteAnnonce(Annonce $annonce, EntityManagerInterface $entityManager): Response
-    {
-        $entityManager->remove($annonce);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('app_mes_annonces');
     }
 
     #[Route('/annonce/mes_annonces', name: 'app_mes_annonces')]

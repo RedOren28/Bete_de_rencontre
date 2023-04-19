@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\EditProfileType;
 use App\Repository\AnnonceRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,8 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EditProfileController extends AbstractController
 {
-    #[Route('/edit/profile', name: 'app_edit_profile')]
-    public function edit(AnnonceRepository $repository, Request $request)
+    #[Route('/profile', name: 'app_profile')]
+    public function edit(AnnonceRepository $repository, Request $request, EntityManagerInterface $entityManager)
     {
         $user = $this->getUser();
         $form = $this->createForm(EditProfileType::class, $user);
@@ -20,14 +21,14 @@ class EditProfileController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             $this->addFlash('success', 'Your profile has been updated.');
 
-            return $this->redirectToRoute('app_profile_edit');
+            return $this->redirectToRoute('app_profile');
         }
 
-        return $this->render('edit_profile/profile.html.twig', [
+        return $this->render('profile/index.html.twig', [
             'form' => $form->createView(),
             'annonces' => $annonces,
         ]);
