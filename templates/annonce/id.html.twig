@@ -10,7 +10,12 @@
     <h1>Annonce {{annonce.Titre}} :</h1>
     <div>
         <h4 class="card-title">{{annonce.Titre}}</h4>
-        <p class="card-text">{{annonce.Description}}</p>
+        {% for image in annonce.images %}
+            <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.url) }}" alt="Card image">
+        {% endfor %}
+        <div class="card-body">
+            <p class="card-text">{{annonce.Description}}</p>
+        </div>
     </div>
 </div>
 <div class="d-flex justify-content-end">				

@@ -126,12 +126,23 @@ class Annonce
     public function removeImage(Image $image): self
     {
         if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
+            $this->images->removeElement($image);
             if ($image->getAnnonce() === $this) {
                 $image->setAnnonce(null);
             }
         }
 
         return $this;
+    }
+
+    public function getImagePath(): ?array
+    {
+        $imagePaths = [];
+
+        foreach ($this->getImages() as $image) {
+            $imagePaths[] = '/images/'.$image->getFilename();
+        }
+
+        return $imagePaths;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Annonce;
 use App\Form\AnnonceType;
 use App\Repository\AnnonceRepository;
@@ -35,6 +36,25 @@ class AnnonceController extends AbstractController
             $annonce->setDatePublication(new \DateTime());
             $annonce->setDateModification(new \DateTime());
             $annonce->setUser($this->getUser());
+
+            $images = $form->get('images')->getData();
+            foreach ($images as $image) {
+                $url = md5(uniqid()) . '.' . $image->guessExtension();
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $url
+                );
+                
+                // Créer une nouvelle instance de l'entité Image
+                $newImage = new Image();
+                $newImage->setUrl($url);
+
+                // Persistez explicitement chaque entité Image
+                $entityManager->persist($newImage);
+                
+                // Ajouter l'image à la collection d'images de l'annonce
+                $annonce->addImage($newImage);
+            }
             
             $entityManager->persist($annonce);
             $entityManager->flush();

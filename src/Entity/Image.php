@@ -48,4 +48,20 @@ class Image
 
         return $this;
     }
+
+    public function setFile(File $file = null): void
+    {
+        $this->file = $file;
+
+        if ($file) {
+            // generate a unique filename
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+
+            // set the new filename
+            $this->filename = $filename;
+
+            // add some debugging code
+            var_dump($this->filename);
+        }
+    }
 }

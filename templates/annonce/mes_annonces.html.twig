@@ -9,6 +9,9 @@
     {% for annonce in annonces %}
     <div class="card" style="width:300px; margin:8px; text-align: center">
         <a href="{{path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">
+            {% for image in annonce.images %}
+                <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.url) }}" alt="Card image">
+            {% endfor %}
             <h4 class="card-title">{{annonce.titre}}</h4>
             <p class="card-text">{{annonce.description}}</p>  
         </a>	

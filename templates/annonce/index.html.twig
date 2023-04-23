@@ -11,6 +11,9 @@
             <div class="card" style="width:300px; margin:8px; text-align: center">
                 <a href="{{path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">
                     <h2 class="card-title">{{ annonce.Titre }}</h2>
+                    {% for image in annonce.images %}
+                        <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.url) }}" alt="Card image">
+                    {% endfor %}
                     <p class="card-text">{{ annonce.Description }}</p>
                     <p class="card-text"><strong>Date de publication:</strong> {{ annonce.DatePublication | date('Y-m-d')}}</p>
                     <p class="card-text"><strong>Dernière Modification:</strong> {{ annonce.DateModification | date('Y-m-d')}}</p>

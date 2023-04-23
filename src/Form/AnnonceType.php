@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class AnnonceType extends AbstractType
 {
@@ -19,6 +20,16 @@ class AnnonceType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('date_publication', DateType::class)
             ->add('date_modification', DateType::class)
+            ->add('images', FileType::class, [
+                'label' => 'Images',
+                'mapped' => false,
+                'required' => false,
+                'multiple' => true,
+                'attr' => [
+                    'accept' => 'image/*',
+                    'multiple' => 'multiple',
+                ],
+            ])
         ;
     }
 
