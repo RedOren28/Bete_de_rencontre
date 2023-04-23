@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bête de rencontre{% endblock %}
+
+{% block body %}
+<div class="container row">
+    <h1 class="text-center my-3">Mince, nous avons perdu nos poils !</h1>
+    <div class="col-6" style="padding: 1em">
+        <div class="text-center mx-auto texte">
+            <p>Nous sommes désolés, mais il semble que vous vous soyez aventuré sur une page qui n'existe pas. Nos équipes de chat-détectives sont sur le coup pour retrouver cette page disparue.</p>
+            <p>En attendant, voici quelques conseils pour vous divertir :</p>
+            <p>- Faites une petite pause et offrez-vous une friandise pour animaux de compagnie. Même si vous n'en avez pas, personne ne vous jugera.</p>
+            <p>- Jouez à cache-cache avec votre animal de compagnie. Ils sont doués pour trouver des choses cachées, peut-être même cette page manquante !</p>
+            <p>Si vous êtes sûr que cette page devrait exister, n'hésitez pas à nous contacter. Nous ferons tout notre possible pour retrouver cette page et la remettre en ligne.</p>
+            <p>Merci d'avoir choisi Bête de Rencontre, où la recherche de l'amour animal est une affaire sérieuse, mais nous ne prenons pas les erreurs de pages web trop au sérieux.</p>
+        </div>
+    </div>
+    <div class="col-6 d-flex align-items-center justify-content-center">
+        <img src="{{ asset('404.png') }}" alt="Image" style="width: 70%">
+    </div>
+    
+    <button class="btn btn-success mx-1" type="button"><a class="nav-link" href="{{ path('app_home')}}">Retour à la page d'accueil</a></button>
+</div>
+{% endblock %}

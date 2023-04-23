@@ -9,12 +9,10 @@
             <h1 class="h3 mb-3 font-weight-normal">Créer une annonce :</h1>
             {{ form_row(form.titre) }}
             {{ form_row(form.description) }}
-            {{ form_row(form.date_publication) }}
-            {{ form_row(form.date_modification) }}
+            {{ form_row(form.images) }}
             <div class="d-flex justify-content-end">
                 <button class="btn btn-success" type="submit">Créer une annonce</button>
             </div>
-        {{ form_end(form) }}
     </div>
 </div>
 {% endblock %}

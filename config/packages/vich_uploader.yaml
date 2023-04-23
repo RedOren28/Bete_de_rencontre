@@ -1,0 +1,4 @@
+# config/packages/vich_uploader.yaml
+vich_uploader:
+    db_driver: orm # ou mongodb selon le système de stockage que vous souhaitez utiliser
+    # autres paramètres de configuration...

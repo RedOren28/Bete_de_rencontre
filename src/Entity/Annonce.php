@@ -134,15 +134,4 @@ class Annonce
 
         return $this;
     }
-
-    public function getImagePath(): ?array
-    {
-        $imagePaths = [];
-
-        foreach ($this->getImages() as $image) {
-            $imagePaths[] = '/images/'.$image->getFilename();
-        }
-
-        return $imagePaths;
-    }
 }

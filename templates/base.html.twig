@@ -16,8 +16,9 @@
         <link rel="stylesheet" href={{asset('css/style.css')}}>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
-            <a class="navbar-brand" href="{{path('app_home')}}">Bête de Rencontre</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 rounded">
+            <img src="../logo.jpg" class="navbar-logo" style="height:50px">
+            <a class="navbar-brand mr-auto" href="{{path('app_home')}}">Bête de Rencontre</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,31 +26,31 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link col align-middle" href="{{ path('app_annonce')}}">Annonces</a>
+                        <a class="nav-link col align-middle link" href="{{ path('app_annonce')}}">Annonces</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link col align-middle" href="{{ path('app_annonce_create')}}">Créer une annonce</a>
+                        <a class="nav-link col align-middle link" href="{{ path('app_annonce_create')}}">Créer une annonce</a>
                     </li>
                 </ul>
                 <div class="my-2 my-lg-0">
                     {% if app.user == null %}
-                    <button class="btn btn-outline-success mx-1" type="button"><a class="nav-link" href="{{ path('app_register')}}">S'inscrire </a></button>
-                    <button class="btn btn-outline-success mx-1" type="button"><a class="nav-link" href="{{ path('app_login')}}">Se connecter </a></button>
+                    <button class="btn btn-success mx-1" type="button"><a class="nav-link" href="{{ path('app_register')}}">S'inscrire </a></button>
+                    <button class="btn btn-success mx-1" type="button"><a class="nav-link" href="{{ path('app_login')}}">Se connecter </a></button>
                     {% else %}
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link col align-middle" href="{{ path('app_mes_annonces')}}">Mes annonces</a>
+                            <a class="nav-link col align-middle link" href="{{ path('app_mes_annonces')}}">Mes annonces</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link col align-middle" href="{{ path('app_profile')}}">Profil</a>
+                            <a class="nav-link col align-middle link" href="{{ path('app_profile')}}">Profil</a>
                         </li>
                         {% if is_granted('ROLE_ADMIN') %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('admin') }}">Admin</a>
+                                <a class="nav-link col align-middle link" href="{{ path('admin') }}">Admin</a>
                             </li>
                         {% endif %}
                         <li>
-                            <button class="btn btn-outline-success" href="{{ path('app_logout')}}">Se déconnecter </a></button>
+                            <button class="btn btn-outline-success mx-1" type="button"><a class="nav-link" href="{{ path('app_logout')}}">Se déconnecter</a></button>
                         </li>
                     </ul>    
                     {% endif %}

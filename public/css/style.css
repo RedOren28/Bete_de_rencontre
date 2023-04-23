@@ -1,5 +1,36 @@
 body{
     background-image: url("../theme_vert.png");
+    background-size:auto;
+    margin: 1em;
+}
+
+.navbar-logo {
+    margin-right: 10px;
+}
+
+.link{
+    font-size:larger;
+    color: black;
+}
+
+.nav-link:hover{
+    font-size:larger;
+    color: green;
+}
+
+.container{
+    display: flex;
+    margin:auto;
+}
+
+.texte{
+    border-right: 2px solid green;
+    padding-right: 5em;
+    margin: 10px;
+}
+
+.btn{
+    font-size:larger;
 }
 
 .form-label{
@@ -22,13 +53,21 @@ h1{
 .btn-success:hover{
     color:green;
     background-color: white;
-    display: flex;
-    justify-content: end;
+    justify-content:center;
+}
+
+.btn-outline-success:hover{
+    color:white;
+    background-color: green;
+    justify-content:center;
 }
 
 .btn-danger:hover{
     color:red;
     background-color: white;
-    display: flex;
-    justify-content: end;
+    justify-content: center;
+}
+
+li{
+    text-decoration: none;
 }

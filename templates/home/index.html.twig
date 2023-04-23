@@ -3,12 +3,18 @@
 {% block title %}Bête de rencontre{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Accueil</h1>
+<h1 class="text-center my-3">Accueil :</h1>
+<div class="container">
+    <div class="col-6 texte">
+        <div class="text-center mx-auto">
+            <p>Bienvenue sur <b>Bête de Rencontre !</b> Le site de mise en relation et d’aide pour la reproduction animale ! Que vous soyez à la recherche d'un partenaire pour votre chien, chat, lapin ou cheval par exemple, nous sommes là pour vous aider.</p>
+            <p>Notre site propose des annonces de reproduction d'éleveurs d'animaux de confiance ou même de particuliers, avec des critères de recherche avancés pour vous aider à trouver l'animal idéal pour votre compagnon.</p>
+            <p>Notre équipe de professionnels est dévouée à assurer la sécurité et la confidentialité de vos informations personnelles tout en offrant une expérience utilisateur agréable et intuitive. Nous travaillons dur pour garantir que toutes les annonces et fiches conseils publiés sur notre site soit précises et respectent les normes de santé et de sécurité pour les animaux.</p>
+            <p>Rejoignez notre communauté dès maintenant et trouvez le partenaire idéal pour votre animal de compagnie !</p>
+        </div>
+    </div>
+    <div class="col-6 d-flex justify-content-center align-items-center">
+        <img src="{{ asset('logo.jpg') }}" style="width: 70%" alt="Image">
+    </div>
 </div>
 {% endblock %}
