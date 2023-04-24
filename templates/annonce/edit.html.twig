@@ -9,7 +9,9 @@
 			</div>
 			<div class="modal-body">
 				{{ form_start(form) }}
-				{{ form_widget(form) }}
+				{{ form_row(form.titre) }}
+            	{{ form_row(form.description) }}
+            	{{ form_row(form.images) }}
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-danger mx-1" data-dismiss="modal">Fermer</button>
                         <button type="submit" class="btn btn-success">Enregistrer les modifications</button>

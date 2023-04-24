@@ -8,15 +8,19 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				{{ form_start(form) }}
-				{{ form_widget(form) }}
+				<form>
+					{{ form_start(form) }}
+					{{ form_row(form.Nom) }}
+					{{ form_row(form.Prenom) }}
+					{{ form_row(form.Date_Naissance) }}
+					{{ form_row(form.Adresse) }}
+					{{ form_row(form.Email) }}
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-danger mx-1" data-dismiss="modal">Fermer</button>
                         <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
                     </div>
-				{{ form_end(form) }}
+				</form>
 			</div>
-
 		</div>
 	</div>
 </div>
