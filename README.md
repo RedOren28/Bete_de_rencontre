@@ -59,5 +59,3 @@
 #### Stats :
 
 ![Langues](https://github-readme-stats.vercel.app/api/top-langs/?username=RedOren28)
-![Stats](https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=RedOren28)
-![Sommaire](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=RedOren28)
