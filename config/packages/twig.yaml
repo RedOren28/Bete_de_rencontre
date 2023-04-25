@@ -3,7 +3,7 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
 
 framework:
-    # error_controller: App\Controller\ErrorController::showException
+    error_controller: App\Controller\ErrorController::showException
     
 when@test:
     twig:
