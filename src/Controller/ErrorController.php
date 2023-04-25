@@ -14,18 +14,18 @@ class ErrorController extends AbstractController
     {
         $statusCode = $exception instanceof HttpExceptionInterface ? $exception->getStatusCode() : 500;
 
-        if (in_array($statusCode, [404])) {
-            $template = 'error/' . $statusCode . '.html.twig';
+        $template = 'error/' . $statusCode . '.html.twig'; // Valeur par défaut
+
+        if ($statusCode !== 404) {
+            $content = $exception->getMessage();
+
+            return new Response(
+                $this->container->get('twig')->render(
+                    $template,
+                    ['exception' => FlattenException::create($exception), 'status_code' => $statusCode, 'status_text' => Response::$statusTexts[$statusCode], 'content' => $content]
+                ),
+                $statusCode
+            );
         }
-
-        $content = $exception->getMessage();
-
-        return new Response(
-            $this->container->get('twig')->render(
-                $template,
-                ['exception' => FlattenException::create($exception), 'status_code' => $statusCode, 'status_text' => Response::$statusTexts[$statusCode], 'content' => $content]
-            ),
-            $statusCode
-        );
     }
 }
