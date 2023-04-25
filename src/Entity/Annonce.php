@@ -106,11 +106,11 @@ class Annonce
     }
 
     /**
-     * @return Collection<int, Image>
+     * @return array <int, Image>
      */
-    public function getImages(): Collection
+    public function getImages(): ?Array
     {
-        return $this->images;
+        return $this->images->toArray();
     }
 
     public function addImage(Image $image): self

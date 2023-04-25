@@ -34,7 +34,7 @@
 					{{app.user.email }}
 				</li>
 			</ul>
-			<div class="d-flex justify-content-end">
+			<div class="d-flex justify-content-center">
         		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editProfileModal">
   					{{ 'Modifier mon Profil'|trans }}
 				</button>
@@ -68,8 +68,8 @@
         		{% endfor %}
         	</ul>
     		{% endif %}
-			<div class="d-flex justify-content-end">
-        		<button class="btn btn-success mx-1" type="button"><a class="nav-link" href="{{path('app_annonce_create')}}">Ajouter une annonce</a></button>
+			<div class="d-flex justify-content-center">
+        		<a class="btn btn-success" href="{{path('app_annonce_create')}}">Ajouter une annonce</a>
     		</div>
 		</form>	
 	</div>

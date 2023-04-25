@@ -23,9 +23,7 @@
   		{{ 'Modifier'|trans }}
 	</button>
     <form action="{{ path('app_annonce_delete', {'id': annonce.id}) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette annonce ?')">
-    	<input type="hidden" name="_method" value="DELETE">
-    	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ annonce.id) }}">
-    	<button type="submit" class="btn btn-danger">Supprimer</button>
+        <button type="submit" class="btn btn-danger">Supprimer</button>
     </form>
 </div>
 

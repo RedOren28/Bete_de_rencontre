@@ -10,9 +10,15 @@
         <div class="card" style="width:300px; margin:8px; text-align: center">
             <a href="{{path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">
                 <h2 class="card-title">{{ annonce.Titre }}</h2>
-                {% for image in annonce.images %}
-                    <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.url) }}" alt="Card image">
-                {% endfor %}
+                {% if annonce.images %}
+                    <div style="height:200px; overflow-y:hidden">
+                        <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image">
+                    </div>
+
+                    {# <div>
+                        <img class="card-img-top" style="height:200px" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image">
+                    </div> #}
+                {% endif %}
                 <p class="card-text">{{ annonce.Description }}</p>
                 <p class="card-text"><strong>Date de publication:</strong> {{ annonce.DatePublication | date('Y-m-d')}}</p>
                 <p class="card-text"><strong>Dernière Modification:</strong> {{ annonce.DateModification | date('Y-m-d')}}</p>

@@ -1,6 +1,7 @@
 body{
-    background-image: url("../theme_vert.png");
-    background-size:auto;
+    background-image: url("../theme_vert.png") ;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .navbar-logo {
@@ -115,3 +116,7 @@ li{
     color:#aaa;
     margin-bottom:0;
 }
+
+/* #content {
+    overflow-y: scroll;
+} */

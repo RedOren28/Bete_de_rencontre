@@ -18,8 +18,6 @@ class AnnonceType extends AbstractType
         $builder
             ->add('titre', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('date_publication', DateType::class)
-            ->add('date_modification', DateType::class)
             ->add('images', FileType::class, [
                 'label' => 'Images',
                 'mapped' => false,

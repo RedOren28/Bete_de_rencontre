@@ -27,16 +27,15 @@ class AnnonceController extends AbstractController
 
     #[Route('/annonce/create', name: 'app_annonce_create')]
     public function createAnnonce(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    {   
         $annonce = new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
-        $annonce->setDatePublication(new \DateTime());
-            $annonce->setDateModification(new \DateTime());
-            $annonce->setUser($this->getUser());
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+            $annonce->setDatePublication(new \DateTime());
+            $annonce->setDateModification(new \DateTime());
+            $annonce->setUser($this->getUser());
 
             $images = $form->get('images')->getData();
             foreach ($images as $image) {
@@ -78,7 +77,26 @@ class AnnonceController extends AbstractController
             $entityManager->flush();
             $id = $annonce->getId();
 
-            return $this->redirectToRoute('app_read_annonce', ['id' => $id]);
+            $images = $form->get('images')->getData();
+            foreach ($images as $image) {
+                $url = $image->getClientOriginalName();
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $url
+                );
+                
+                // Créer une nouvelle instance de l'entité Image
+                $newImage = new Image();
+                $newImage->setUrl($url);
+
+                // Persistez explicitement chaque entité Image
+                $entityManager->persist($newImage);
+                
+                // Ajouter l'image à la collection d'images de l'annonce
+                $annonce->addImage($newImage);
+            }
+            $entityManager->persist($annonce);
+            $entityManager->flush();
         }
 
         return $this->render('annonce/id.html.twig', [
@@ -101,7 +119,7 @@ class AnnonceController extends AbstractController
     {
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
-
+ 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
