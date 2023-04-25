@@ -31,11 +31,12 @@ class AnnonceController extends AbstractController
         $annonce = new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $annonce->setDatePublication(new \DateTime());
+        $annonce->setDatePublication(new \DateTime());
             $annonce->setDateModification(new \DateTime());
             $annonce->setUser($this->getUser());
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
 
             $images = $form->get('images')->getData();
             foreach ($images as $image) {
@@ -76,8 +77,6 @@ class AnnonceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
             $id = $annonce->getId();
-
-            $this->addFlash('success', 'Your profile has been updated.');
 
             return $this->redirectToRoute('app_read_annonce', ['id' => $id]);
         }
