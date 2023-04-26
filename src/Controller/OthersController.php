@@ -13,4 +13,16 @@ class OthersController extends AbstractController
     {
         return $this->render('others/about.html.twig');
     }
+
+    #[Route('/accessibilite', name: 'app_accessibilite')]
+    public function accessibilite(): Response
+    {
+        return $this->render('others/accessibilite.html.twig');
+    }
+
+    #[Route('/mentions', name: 'app_mentions')]
+    public function mentions(): Response
+    {
+        return $this->render('others/mentions.html.twig');
+    }
 }

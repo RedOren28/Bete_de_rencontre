@@ -28,6 +28,11 @@ class AnnonceController extends AbstractController
     #[Route('/annonce/create', name: 'app_annonce_create')]
     public function createAnnonce(Request $request, EntityManagerInterface $entityManager): Response
     {   
+        // Vérifie que l'utilisateur est connecté
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login', ['redirected' => true]);
+        }
+
         $annonce = new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);

@@ -16,8 +16,8 @@
         </ul>
         <div class="my-2 my-lg-0">
             {% if app.user == null %}
-                <button class="btn btn-success text-decoration-none" type="button" onclick="window.location.href='{{ path('app_register')}}'">S'inscrire</button>
-                <button class="btn btn-success mx-1 text-decoration-none" type="button" onclick="window.location.href='{{ path('app_login')}}'">Se connecter</button>
+                <a class="btn btn-success" href="{{path('app_register')}}">S'inscrire</a>
+                <a class="btn btn-success" href="{{ path('app_login')}}">Se connecter</a>
             {% else %}
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
@@ -32,7 +32,7 @@
                         </li>
                     {% endif %}
                     <li>
-                        <button class="btn btn-outline-success mx-1 text-decoration-none" type="button" onclick="window.location.href='{{ path('app_logout')}}'">Se déconnecter</button>
+                        <a class="btn btn-outline-success" href="{{path('app_logout')}}">Se déconnecter</a>
                     </li>
                 </ul>    
             {% endif %}
