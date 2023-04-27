@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AnnonceController extends AbstractController
@@ -42,9 +43,12 @@ class AnnonceController extends AbstractController
             $annonce->setDateModification(new \DateTime());
             $annonce->setUser($this->getUser());
 
+            // On récupère les images transmises
             $images = $form->get('images')->getData();
             foreach ($images as $image) {
-                $url = md5(uniqid()) . '.' . $image->guessExtension();
+                // On génère un nouveau nom de fichier
+                $url = $image->getClientOriginalName();
+                // On copie le fichier dans le dossier uploads
                 $image->move(
                     $this->getParameter('images_directory'),
                     $url
@@ -70,6 +74,29 @@ class AnnonceController extends AbstractController
         return $this->render('annonce/create.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/annonce/delete/id/{id}', name: 'app_annonce_delete_image', methods: ['DELETE'])]
+    public function deleteImage(Image $image, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $data = json_decode($request->getContent(), true);
+    
+        // On vérifie si le token est valide
+        if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])){
+            // On récupère le nom de l'image
+            $nom = $image->getUrl();
+            // On supprime le fichier
+            unlink($this->getParameter('images_directory').'/'.$nom);
+    
+            // On supprime l'entrée de la base
+            $entityManager->remove($image);
+            $entityManager->flush();
+    
+            // On répond en json
+            return new JsonResponse(['success' => 1]);
+        }else{
+            return new JsonResponse(['error' => 'Token Invalide'], 400);
+        }
     }
 
     #[Route('/annonce/read/id/{id}', name: 'app_read_annonce')]
