@@ -11,10 +11,11 @@
 				{{ form_start(form) }}
 				{{ form_row(form.titre) }}
             	{{ form_row(form.description) }}
-            	<h2>Images</h2>
+				{{ form_row(form.images) }}
+            	<h2>Supprimer des images :</h2>
 					{% for image in annonce.images %}
 						<div>
-							<img src="{{ asset('/uploads/'~image.url) }}" alt="" width="150">
+							<img class="card-img-top" src="{{ asset('uploads/images/' ~ image.url) }}" alt="Card image" style="width: 100px"><br>
 
 							{# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
 							<a href="{{ path('app_annonce_delete_image', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a>

@@ -19,7 +19,7 @@ class AnnonceType extends AbstractType
             ->add('titre', TextType::class)
             ->add('description', TextareaType::class)
             ->add('images', FileType::class, [
-                'label' => 'Images',
+                'label' => 'Ajouter des images :',
                 'mapped' => false,
                 'required' => false,
                 'multiple' => true,

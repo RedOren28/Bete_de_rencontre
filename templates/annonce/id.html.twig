@@ -9,15 +9,15 @@
 <div class="row" style= "text-align: center">
     <h1>Annonce {{annonce.Titre}} :</h1>
     <div>
-        <h4 class="card-title">{{annonce.Titre}}</h4>
-        {% for image in annonce.images %}
-            <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.url) }}" alt="Card image">
-        {% endfor %}
         <div class="card-body">
             <p class="card-text">{{annonce.Description}}</p>
         </div>
+        {% for image in annonce.images %}
+            <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.url) }}" alt="Card image" style="width: 250px">
+        {% endfor %}
     </div>
 </div>
+{% if app.user and app.user.id == annonce.user.id %}
 <div class="d-flex justify-content-end">				
     <button type="button" class="btn btn-success mx-1" data-toggle="modal" data-target="#editAnnonceModal">
   		{{ 'Modifier'|trans }}
@@ -26,5 +26,6 @@
         <button type="submit" class="btn btn-danger">Supprimer</button>
     </form>
 </div>
+{% endif %}
 
 {% endblock %}
