@@ -45,13 +45,9 @@
 <div class="container">
 	<div class="d-flex justify-content-center p-4 mt-4" >
 		<form>
-			<ul class="list-unstyled">
-				<li>
-					<h1 class="h3 mb-3 font-weight-normal">Mes Annonces :</h1>
-				</li>
-			</ul>
+			<h1 class="h3 mb-3 font-weight-normal">Mes Annonces :</h1>
 			{% if annonces is empty %}
-        	<h1>Aucune annonce à afficher.</h1>
+        	<p>Aucune annonce à afficher.</p>
     		{% else %}
 			<ul class="list-unstyled">
         		{% for annonce in annonces %}
@@ -59,6 +55,11 @@
                 	<div class="card" style="width:300px; margin:8px; text-align: center">
                     	<a href="{{path('app_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">
                         	<h2 class="card-title">{{ annonce.titre }}</h2>
+							{% if annonce.images %}
+								<div style="height:200px; overflow-y:hidden">
+									<img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image">
+								</div>
+							{% endif %}
                         	<p class="card-text">{{ annonce.description }}</p>
                         	<p class="card-text"><strong>Date de publication:</strong> {{ annonce.DatePublication | date('Y-m-d')}}</p>
                         	<p class="card-text"><strong>Dernière Modification:</strong> {{ annonce.DateModification | date('Y-m-d')}}</p>

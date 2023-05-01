@@ -16,8 +16,18 @@ class AnnonceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre', TextType::class)
-            ->add('description', TextareaType::class)
+            ->add('titre', TextType::class, [
+                'label' => 'Titre :',
+                'attr' => [
+                    'placeholder' => 'Mon annonce'
+                ],
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description :',
+                'attr' => [
+                    'placeholder' => 'Ma description'
+                ],
+            ])
             ->add('images', FileType::class, [
                 'label' => 'Ajouter des images :',
                 'mapped' => false,
