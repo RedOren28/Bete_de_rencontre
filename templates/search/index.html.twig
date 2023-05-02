@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SearchController!{% endblock %}
+
+{% block body %}
+    {% if app.request.method == 'POST' %}
+        <div>
+            {% if annonces | length == 0 %}
+                <h4>Aucun résulat pour votre recherche.</h4>
+            {% else %}
+                <h3 class="mt-3">Vos résulats de recherche :</h3>
+                {% for annonce in annonces %}
+                    <div class="card" style="width:300px; margin:8px; text-align: center">
+                        <a href="{{path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">
+                            <h2 class="card-title">{{ annonce.Titre }}</h2>
+                            {% if annonce.images %}
+                                <div style="height:200px; overflow-y:hidden">
+                                    <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image">
+                                </div>
+                            {% endif %}
+                            <p class="card-text">{{ annonce.Description }}</p>
+                            <p class="card-text"><strong>Date de publication:</strong> {{ annonce.DatePublication | date('Y-m-d')}}</p>
+                            <p class="card-text"><strong>Dernière Modification:</strong> {{ annonce.DateModification | date('Y-m-d')}}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

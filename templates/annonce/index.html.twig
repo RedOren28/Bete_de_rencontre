@@ -3,29 +3,33 @@
 {% block title %}Annonces{% endblock %}
 
 {% block body %}
-<div class="row" style= "text-align: center">
-    <h1>Annonces :</h1>
+
+{{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+
+    <div class="row" style= "text-align: center">
+        <h1>Annonces :</h1>
+        
+        {% if annonces is empty %}
+            <h1>Aucune annonce à afficher.</h1>
+        {% else %}
+
+            {% for annonce in annonces %} 
+                <div class="card" style="width:300px; margin:8px; text-align: center">
+                    <a href="{{path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">
+                        <h2 class="card-title">{{ annonce.Titre }}</h2>
+                        {% if annonce.images %}
+                            <div style="height:200px; overflow-y:hidden">
+                                <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image">
+                            </div>
+                        {% endif %}
+                        <p class="card-text">{{ annonce.Description }}</p>
+                        <p class="card-text"><strong>Date de publication:</strong> {{ annonce.DatePublication | date('Y-m-d')}}</p>
+                        <p class="card-text"><strong>Dernière Modification:</strong> {{ annonce.DateModification | date('Y-m-d')}}</p>
+                    </a>
+                </div>
+            {% endfor %} 
+        {% endif %} 
+    </div>
     
-    {% if annonces is empty %}
-        <h1>Aucune annonce à afficher.</h1>
-    {% else %}
-
-    {% for annonce in annonces %} 
-        <div class="card" style="width:300px; margin:8px; text-align: center">
-            <a href="{{path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">
-                <h2 class="card-title">{{ annonce.Titre }}</h2>
-                {% if annonce.images %}
-                    <div style="height:200px; overflow-y:hidden">
-                        <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image">
-                    </div>
-                {% endif %}
-                <p class="card-text">{{ annonce.Description }}</p>
-                <p class="card-text"><strong>Date de publication:</strong> {{ annonce.DatePublication | date('Y-m-d')}}</p>
-                <p class="card-text"><strong>Dernière Modification:</strong> {{ annonce.DateModification | date('Y-m-d')}}</p>
-            </a>
-        </div>
-    {% endfor %}  
-</div>
-
 {% endblock %}
 

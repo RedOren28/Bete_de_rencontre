@@ -39,6 +39,26 @@ class AnnonceRepository extends ServiceEntityRepository
         }
     }
 
+     // Find/search annonces by title
+     public function findByString(string $query)
+     {
+         $qb = $this->createQueryBuilder('p');
+         $qb
+             ->where(
+                 $qb->expr()->andX(
+                     $qb->expr()->orX(
+                         $qb->expr()->like('p.titre', ':query'),
+                     ),
+                     $qb->expr()->isNotNull('p.date_publication')
+                 )
+             )
+             ->setParameter('query', '%' . $query . '%')
+         ;
+         return $qb
+             ->getQuery()
+             ->getResult();
+     }
+
 //    /**
 //     * @return Annonce[] Returns an array of Annonce objects
 //     */
