@@ -19,7 +19,9 @@
 </div>
 <div class="row" style= "text-align: center">
     <h1>Dernières annonces postées:</h1>
-
+    {% if annonces is empty %}
+        <p>Aucune annonce à afficher.</p>
+    {% endif %}
     {% for annonce in annonces %} 
         <div class="card" style="width:300px; margin:8px; text-align: center">
             <a href="{{path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">

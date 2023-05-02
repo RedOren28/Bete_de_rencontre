@@ -29,7 +29,6 @@ class ErrorController extends AbstractController
         }
 
         // Afficher l'erreur sans template pour tous les autres codes d'erreur
-        $message = 'Une erreur est survenue : ' . $exception->getMessage();
-        return new Response($message, $statusCode);
+        return new Response($exception);
     }
 }
