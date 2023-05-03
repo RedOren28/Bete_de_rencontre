@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Image;
 use App\Entity\Annonce;
+use App\Entity\Image;
+use App\Entity\Animal;
 use App\Form\AnnonceType;
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,6 +43,13 @@ class AnnonceController extends AbstractController
             $annonce->setDateModification(new \DateTime());
             $annonce->setUser($this->getUser());
 
+            // Créer un nouvel animal
+            $animal = new Animal();
+            // Définir les propriétés de l'animal à partir du formulaire
+            $animal->setNom($form->get('animal_nom')->getData());
+            // Associer l'annonce à l'animal
+            $annonce->setAnimal($animal);
+
             // On récupère les images transmises
             $images = $form->get('images')->getData();
             foreach ($images as $image) {
@@ -65,6 +73,7 @@ class AnnonceController extends AbstractController
             }
             
             $entityManager->persist($annonce);
+            $entityManager->persist($animal);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_annonce', ['id' => $annonce->getId()]);

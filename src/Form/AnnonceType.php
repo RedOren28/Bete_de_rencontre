@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Annonce;
+use App\Entity\Animal;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +20,7 @@ class AnnonceType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class, [
-                'label' => 'Titre :',
+                'label' => 'Titre :', 
                 'attr' => [
                     'placeholder' => 'Mon annonce'
                 ],
@@ -28,6 +31,7 @@ class AnnonceType extends AbstractType
                     'placeholder' => 'Ma description'
                 ],
             ])
+            ->add('animal', AnimalType::class)
             ->add('images', FileType::class, [
                 'label' => 'Ajouter des images :',
                 'mapped' => false,
