@@ -1,1 +1,12 @@
-{{ form(form) }}
+<div class="modal-body">
+    {{ form_start(form) }}
+        <div class="row">
+            <div class="col-9">
+                {{ form_row(form.query) }} 
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+                {{ form_row(form.recherche) }}
+            </div>
+        </div>
+    {{ form_end(form)}}
+</div>
