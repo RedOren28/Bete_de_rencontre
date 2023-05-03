@@ -129,6 +129,12 @@ class AnnonceController extends AbstractController
                 // Ajouter l'image à la collection d'images de l'annonce
                 $annonce->addImage($newImage);
             }
+            // Si aucune nouvelle image n'a été téléchargée, ne pas ajouter d'images supplémentaires
+            if (count($images) == 0) {
+                $entityManager->persist($annonce);
+                $entityManager->flush();
+            }
+            
             $entityManager->persist($annonce);
             $entityManager->flush();
         }

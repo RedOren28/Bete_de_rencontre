@@ -12,20 +12,32 @@
         <div class="card-body">
             <p class="card-text">{{annonce.Description}}</p>
         </div>
+    </div>
+    <div>
         {% for image in annonce.images %}
             <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.url) }}" alt="Card image" style="width: 250px">
         {% endfor %}
     </div>
 </div>
-{% if app.user and app.user.id == annonce.user.id %}
-<div class="d-flex justify-content-end">				
-    <button type="button" class="btn btn-success mx-1" data-toggle="modal" data-target="#editAnnonceModal">
-  		{{ 'Modifier'|trans }}
-	</button>
-    <form action="{{ path('app_annonce_delete', {'id': annonce.id}) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette annonce ?')">
-        <button type="submit" class="btn btn-danger">Supprimer</button>
-    </form>
+<div class="row">
+    <h2>Animal {{annonce.animal.Nom}} :</h2>
+    <div class="card-body">
+        <p class="card-text">{{annonce.animal.sexe}}</p>
+        <p class="card-text">{{annonce.animal.vermifugation}}</p>
+        <p class="card-text">{{annonce.animal.vaccin}}</p>
+        <p class="card-text">{{annonce.animal.pucetatouage}}</p>
+    </div> 
 </div>
-{% endif %}
-
+<div>
+    {% if app.user and app.user.id == annonce.user.id %}
+        <div class="d-flex justify-content-end">				
+            <button type="button" class="btn btn-success mx-1" data-toggle="modal" data-target="#editAnnonceModal">
+                {{ 'Modifier'|trans }}
+            </button>
+            <form action="{{ path('app_annonce_delete', {'id': annonce.id}) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette annonce ?')">
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+            </form>
+        </div>
+    {% endif %}
+</div>
 {% endblock %}
