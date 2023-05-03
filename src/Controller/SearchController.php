@@ -12,14 +12,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SearchController extends AbstractController
 {
-    #[Route('/search', name: 'app_search')]
-    public function index(): Response
-    {
-        return $this->render('search/index.html.twig', [
-            'controller_name' => 'SearchController',
-        ]);
-    }
-
     public function searchBar()
     {
         $form = $this->createFormBuilder()
@@ -33,7 +25,7 @@ class SearchController extends AbstractController
             ])
             ->add('recherche', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn btn-success'
                 ]
             ])
             ->getForm();
