@@ -42,6 +42,9 @@ class AnnonceController extends AbstractController
             $annonce->setDateModification(new \DateTime());
             $annonce->setUser($this->getUser());
 
+            $animal = $form->get('animal')->getData();
+            $annonce->setAnimal($animal);
+
             // On récupère les images transmises
             $images = $form->get('images')->getData();
             foreach ($images as $image) {

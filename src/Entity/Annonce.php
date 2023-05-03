@@ -88,6 +88,9 @@ class Annonce
     #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Image::class, orphanRemoval: true)]
     private Collection $images;
 
+    #[ORM\OneToOne(mappedBy: 'Annonce', cascade: ['persist', 'remove'])]
+    private ?Animal $animal = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -131,6 +134,23 @@ class Annonce
                 $image->setAnnonce(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAnimal(): ?Animal
+    {
+        return $this->animal;
+    }
+
+    public function setAnimal(Animal $animal): self
+    {
+        // set the owning side of the relation if necessary
+        if ($animal->getAnnonce() !== $this) {
+            $animal->setAnnonce($this);
+        }
+
+        $this->animal = $animal;
 
         return $this;
     }
