@@ -24,6 +24,15 @@ class AnimalType extends AbstractType
                     'placeholder' => 'Nom'
                 ],
             ])
+            ->add('sexe', ChoiceType::class, [
+                'label' => 'Sexe :',
+                'choices' => [
+                    'Masculin' => false,
+                    'Féminin' => true,
+                ],
+                'expanded' => true, // Pour afficher des boutons radio à la place de la checkbox
+                'multiple' => false, // Un seul choix est possible
+            ])
             ->add('Date_Naissance', DateType::class, [
                 'format' => 'dd MM yyyy',
                 'years' => range(2000, 2023),
