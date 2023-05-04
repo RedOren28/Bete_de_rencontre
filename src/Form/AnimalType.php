@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Poil;
 use App\Entity\Animal;
 use App\Entity\Couleur;
 use Symfony\Component\Form\AbstractType;
