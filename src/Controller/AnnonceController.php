@@ -45,6 +45,10 @@ class AnnonceController extends AbstractController
             $animal = $form->get('animal')->getData();
             $annonce->setAnimal($animal);
 
+            $colorId = $form->get('animal')['couleur'];
+            $color = $form->find($colorId);
+            $animal->setColor($color);
+
             // On récupère les images transmises
             $images = $form->get('images')->getData();
             foreach ($images as $image) {

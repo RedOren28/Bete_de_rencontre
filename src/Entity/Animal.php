@@ -32,6 +32,9 @@ class Animal
     #[ORM\JoinColumn(nullable: false)]
     private ?Annonce $Annonce = null;
 
+    #[ORM\ManyToOne(inversedBy: 'animals')]
+    private ?Couleur $Couleur = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Animal
     public function setAnnonce(Annonce $Annonce): self
     {
         $this->Annonce = $Annonce;
+
+        return $this;
+    }
+
+    public function getCouleur(): ?Couleur
+    {
+        return $this->Couleur;
+    }
+
+    public function setCouleur(?Couleur $Couleur): self
+    {
+        $this->Couleur = $Couleur;
 
         return $this;
     }

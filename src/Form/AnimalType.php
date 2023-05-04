@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Animal;
+use App\Entity\Couleur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -29,6 +31,12 @@ class AnimalType extends AbstractType
                 'expanded' => true, // Pour afficher des boutons radio à la place de la checkbox
                 'multiple' => false, // Un seul choix est possible
             ])
+            ->add('couleur', EntityType::class, [
+                'label' => 'Couleur :',
+                'class' => Couleur::class,
+                'choice_label' => 'nom',
+                'placeholder' => 'Sélectionnez une couleur',
+            ])            
             ->add('vermifugation', ChoiceType::class, [
                 'label' => 'Vermifugation à jour :',
                 'choices' => [
