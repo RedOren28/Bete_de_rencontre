@@ -23,12 +23,6 @@ class AnimalType extends AbstractType
                     'placeholder' => 'Nom'
                 ],
             ])
-            ->add('nom', TextType::class, [
-                'label' => 'Nom :',
-                'attr' => [
-                    'placeholder' => 'Nom'
-                ],
-            ])
             ->add('Date_Naissance', DateType::class, [
                 'format' => 'dd MM yyyy',
                 'years' => range(2000, 2023),
@@ -42,7 +36,13 @@ class AnimalType extends AbstractType
                 'class' => Couleur::class,
                 'choice_label' => 'nom',
                 'placeholder' => 'Sélectionnez une couleur',
-            ])            
+            ])  
+            ->add('poil', EntityType::class, [
+                'label' => 'Type de poil :',
+                'class' => Poil::class,
+                'choice_label' => 'type',
+                'placeholder' => 'Sélectionnez un type de poil',
+            ])          
             ->add('vermifugation', ChoiceType::class, [
                 'label' => 'Vermifugation à jour :',
                 'choices' => [

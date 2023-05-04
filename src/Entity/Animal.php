@@ -39,6 +39,9 @@ class Animal
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $Date_Naissance = null;
 
+    #[ORM\ManyToOne(inversedBy: 'animals')]
+    private ?Poil $poil = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -136,6 +139,18 @@ class Animal
     public function setDateNaissance(\DateTimeInterface $Date_Naissance): self
     {
         $this->Date_Naissance = $Date_Naissance;
+
+        return $this;
+    }
+
+    public function getPoil(): ?Poil
+    {
+        return $this->poil;
+    }
+
+    public function setPoil(?Poil $poil): self
+    {
+        $this->poil = $poil;
 
         return $this;
     }
