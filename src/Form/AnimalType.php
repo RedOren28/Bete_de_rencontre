@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
@@ -22,14 +23,19 @@ class AnimalType extends AbstractType
                     'placeholder' => 'Nom'
                 ],
             ])
-            ->add('sexe', ChoiceType::class, [
-                'label' => 'Sexe :',
-                'choices' => [
-                    'Masculin' => false,
-                    'Féminin' => true,
+            ->add('nom', TextType::class, [
+                'label' => 'Nom :',
+                'attr' => [
+                    'placeholder' => 'Nom'
                 ],
-                'expanded' => true, // Pour afficher des boutons radio à la place de la checkbox
-                'multiple' => false, // Un seul choix est possible
+            ])
+            ->add('Date_Naissance', DateType::class, [
+                'format' => 'dd MM yyyy',
+                'years' => range(2000, 2023),
+                'placeholder' => [
+                    'day' => 'Jour', 'month' => 'Mois', 'year' => 'Année',
+                ],
+                'label' => 'Date de Naissance',
             ])
             ->add('couleur', EntityType::class, [
                 'label' => 'Couleur :',

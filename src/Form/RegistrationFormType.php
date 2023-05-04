@@ -32,14 +32,6 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Dupont'
                 ],
             ])
-            ->add('Date_Naissance', DateType::class, [
-                'format' => 'dd MM yyyy',
-                'years' => range(1920,2005),
-                'placeholder' => [
-                    'day' => 'Jour', 'month' => 'Mois', 'year' => 'Année',
-                ],
-                'label' => 'Date de Naissance',
-            ])
             ->add('Adresse', TextType::class,[
                 'label' => 'Adresse :',
                 'attr' => [

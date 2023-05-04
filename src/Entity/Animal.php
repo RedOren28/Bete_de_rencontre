@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AnimalRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
@@ -34,6 +35,9 @@ class Animal
 
     #[ORM\ManyToOne(inversedBy: 'animals')]
     private ?Couleur $Couleur = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $Date_Naissance = null;
 
     public function getId(): ?int
     {
@@ -120,6 +124,18 @@ class Animal
     public function setCouleur(?Couleur $Couleur): self
     {
         $this->Couleur = $Couleur;
+
+        return $this;
+    }
+
+    public function getDateNaissance(): ?\DateTimeInterface
+    {
+        return $this->Date_Naissance;
+    }
+
+    public function setDateNaissance(\DateTimeInterface $Date_Naissance): self
+    {
+        $this->Date_Naissance = $Date_Naissance;
 
         return $this;
     }
