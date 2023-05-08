@@ -42,9 +42,6 @@ class Animal
     #[ORM\ManyToOne(inversedBy: 'animals')]
     private ?Poil $poil = null;
 
-    #[ORM\ManyToOne(inversedBy: 'animals')]
-    private ?Regime $Regime = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -154,18 +151,6 @@ class Animal
     public function setPoil(?Poil $poil): self
     {
         $this->poil = $poil;
-
-        return $this;
-    }
-
-    public function getRegime(): ?Regime
-    {
-        return $this->Regime;
-    }
-
-    public function setRegime(?Regime $Regime): self
-    {
-        $this->Regime = $Regime;
 
         return $this;
     }

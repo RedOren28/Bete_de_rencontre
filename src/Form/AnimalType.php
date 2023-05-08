@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Poil;
 use App\Entity\Animal;
-use App\Entity\Regime;
 use App\Entity\Couleur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -42,12 +41,6 @@ class AnimalType extends AbstractType
                 ],
                 'label' => 'Date de Naissance',
             ])
-            ->add('regime', EntityType::class, [
-                'label' => 'Régime Alimentaire :',
-                'class' => Regime::class,
-                'choice_label' => 'nom',
-                'placeholder' => 'Sélectionnez un régime alimentaire',
-            ]) 
             ->add('couleur', EntityType::class, [
                 'label' => 'Couleur :',
                 'class' => Couleur::class,
