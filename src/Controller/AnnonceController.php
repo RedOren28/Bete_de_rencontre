@@ -42,13 +42,21 @@ class AnnonceController extends AbstractController
             $annonce->setDateModification(new \DateTime());
             $annonce->setUser($this->getUser());
 
+            //Animal
             $animal = $form->get('animal')->getData();
             $annonce->setAnimal($animal);
 
+            //Regime
+            $regimeId = $form->get('animal')['regime'];
+            $regime = $form->find($regimeId);
+            $animal->setRegime($regime);
+
+            //Couleur
             $colorId = $form->get('animal')['couleur'];
             $color = $form->find($colorId);
             $animal->setColor($color);
 
+            //Poil
             $poilId = $form->get('animal')['poil'];
             $poil = $form->find($poilId);
             $animal->setColor($poil);
