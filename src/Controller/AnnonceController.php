@@ -27,7 +27,7 @@ class AnnonceController extends AbstractController
 
     #[Route('/annonce/create', name: 'app_annonce_create')]
     public function createAnnonce(Request $request, EntityManagerInterface $entityManager): Response
-    {   
+    {
         // Vérifie que l'utilisateur est connecté
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login', ['redirected' => true]);
@@ -45,13 +45,29 @@ class AnnonceController extends AbstractController
             $animal = $form->get('animal')->getData();
             $annonce->setAnimal($animal);
 
+            // $regimeId = $form->get('animal')['regime'];
+            // $regime = $entityManager->getRepository(Regime::class)->find($regimeId);
+            // $animal->setRegime($regime);
+
+            // // Ajouter cet appel pour récupérer les alimentations associées au régime sélectionné
+            // $alimentations = $entityManager->getRepository(Alimentation::class)->findByRegime($regime);
+
+            // // On récupère les données soumises pour la liaison ManyToMany
+            // $alimentationsIds = $form->get('animal')['alimentations'];
+
+            // // Pour chaque id, on crée un nouvel objet Alimentation et on l'associe à l'annonce
+            // foreach ($alimentationsIds as $alimentationId) {
+            //     $alimentation = $entityManager->getRepository(Alimentation::class)->find($alimentationId);
+            //     $annonce->addAlimentation($alimentation);
+            // }
+
             $colorId = $form->get('animal')['couleur'];
-            $color = $form->find($colorId);
+            $color = $entityManager->getRepository(Couleur::class)->find($colorId);
             $animal->setColor($color);
 
             $poilId = $form->get('animal')['poil'];
-            $poil = $form->find($poilId);
-            $animal->setColor($poil);
+            $poil = $entityManager->getRepository(Poil::class)->find($poilId);
+            $animal->setPoil($poil);
 
             // On récupère les images transmises
             $images = $form->get('images')->getData();
@@ -63,18 +79,18 @@ class AnnonceController extends AbstractController
                     $this->getParameter('images_directory'),
                     $url
                 );
-                
+
                 // Créer une nouvelle instance de l'entité Image
                 $newImage = new Image();
                 $newImage->setUrl($url);
 
                 // Persistez explicitement chaque entité Image
                 $entityManager->persist($newImage);
-                
+
                 // Ajouter l'image à la collection d'images de l'annonce
                 $annonce->addImage($newImage);
             }
-            
+
             $entityManager->persist($annonce);
             $entityManager->flush();
 
@@ -187,6 +203,14 @@ class AnnonceController extends AbstractController
         return $this->render('annonce/mes_annonces.html.twig', [
             'annonces' => $annonces,
         ]);
+    }
+
+    #[Route('/annonce/alimentations/{id}', name: 'app_annonce_alimentations', methods: ['GET'])]
+    public function getAlimentationsByRegime(Regime $regime): JsonResponse
+    {
+        $alimentations = $regime->getAlimentations()->toArray();
+    
+        return new JsonResponse($alimentations);
     }
 }
 
