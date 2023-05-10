@@ -4,8 +4,6 @@
 ![stable](https://img.shields.io/badge/stability-stable-brightgreen.svg)
 [![Build status](https://ci.appveyor.com/api/projects/status/pvoiujbphmt4figl?svg=true)](https://ci.appveyor.com/project/RedOren28/bete-de-rencontre)
 ![GitHub language count](https://img.shields.io/github/languages/count/RedOren28/Bete_de_rencontre)
-![SymfonyInsight Grade](https://img.shields.io/symfony/i/grade/fd4760f2-bfb1-49d2-ad1a-7b344465ecd2)
-![SymfonyInsight Stars](https://img.shields.io/symfony/i/stars/fd4760f2-bfb1-49d2-ad1a-7b344465ecd2)
 ![GitHub repo file count](https://img.shields.io/github/directory-file-count/RedOren28/Bete_de_rencontre)
 ![GitHub repo size](https://img.shields.io/github/repo-size/RedOren28/Bete_de_rencontre)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/RedOren28/Bete_de_rencontre)
@@ -13,7 +11,6 @@
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bd4194a94b4b49d3abc029bf78f7c4a0)](https://app.codacy.com/gh/RedOren28/Bete_de_rencontre/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-[![PHP Composer](https://github.com/RedOren28/Bete_de_rencontre/actions/workflows/php.yml/badge.svg)](https://github.com/RedOren28/Bete_de_rencontre/actions/workflows/php.yml)
 [![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20Visual%20Studio%20Code&labelColor=2c2c32&color=007acc&logoColor=007acc)](https://open.vscode.dev/microsoft/Bete_de_rencontre)
 
 ## Prérequis
