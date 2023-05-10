@@ -2,15 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\Poil;
 use App\Entity\Image;
+use App\Entity\Regime;
 use App\Entity\Annonce;
+use App\Entity\Couleur;
 use App\Form\AnnonceType;
+use App\Entity\Alimentation;
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AnnonceController extends AbstractController
@@ -25,9 +30,22 @@ class AnnonceController extends AbstractController
         ]);
     }
 
+    #[Route('/annonce/fetch/{regime}', name: 'app_annonce_fetch')]
+    public function fetchByRegime(string $regime = "" , EntityManagerInterface $entityManager, SerializerInterface $serializer):Response
+    {
+
+        $regime = $entityManager->getRepository(Regime::class)->find($regime);
+
+        // Ajouter cet appel pour récupérer les alimentations associées au régime sélectionné
+        $alimentations = $entityManager->getRepository(Alimentation::class)->findByRegime($regime);
+        
+        return new JsonResponse($serializer->serialize($alimentations, 'json', ['groups' => ['list_alimentations']]));
+    }
+
+
     #[Route('/annonce/create', name: 'app_annonce_create')]
     public function createAnnonce(Request $request, EntityManagerInterface $entityManager): Response
-    {   
+    {
         // Vérifie que l'utilisateur est connecté
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login', ['redirected' => true]);
@@ -45,14 +63,6 @@ class AnnonceController extends AbstractController
             $animal = $form->get('animal')->getData();
             $annonce->setAnimal($animal);
 
-            $colorId = $form->get('animal')['couleur'];
-            $color = $form->find($colorId);
-            $animal->setColor($color);
-
-            $poilId = $form->get('animal')['poil'];
-            $poil = $form->find($poilId);
-            $animal->setColor($poil);
-
             // On récupère les images transmises
             $images = $form->get('images')->getData();
             foreach ($images as $image) {
@@ -63,18 +73,18 @@ class AnnonceController extends AbstractController
                     $this->getParameter('images_directory'),
                     $url
                 );
-                
+
                 // Créer une nouvelle instance de l'entité Image
                 $newImage = new Image();
                 $newImage->setUrl($url);
 
                 // Persistez explicitement chaque entité Image
                 $entityManager->persist($newImage);
-                
+
                 // Ajouter l'image à la collection d'images de l'annonce
                 $annonce->addImage($newImage);
             }
-            
+
             $entityManager->persist($annonce);
             $entityManager->flush();
 
@@ -187,6 +197,14 @@ class AnnonceController extends AbstractController
         return $this->render('annonce/mes_annonces.html.twig', [
             'annonces' => $annonces,
         ]);
+    }
+
+    #[Route('/annonce/alimentations/{id}', name: 'app_annonce_alimentations', methods: ['GET'])]
+    public function getAlimentationsByRegime(Regime $regime): JsonResponse
+    {
+        $alimentations = $regime->getAlimentations()->toArray();
+    
+        return new JsonResponse($alimentations);
     }
 }
 

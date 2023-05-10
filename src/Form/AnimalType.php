@@ -4,8 +4,14 @@ namespace App\Form;
 
 use App\Entity\Poil;
 use App\Entity\Animal;
+use App\Entity\Regime;
 use App\Entity\Couleur;
+use App\Entity\Alimentation;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
+use App\Repository\AlimentationRepository;
+use App\Repository\RegimeRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,6 +21,13 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class AnimalType extends AbstractType
 {
+    private $alimentationRepository;
+
+    public function __construct(AlimentationRepository $alimentationRepository)
+    {
+        $this->alimentationRepository = $alimentationRepository;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -27,8 +40,8 @@ class AnimalType extends AbstractType
             ->add('sexe', ChoiceType::class, [
                 'label' => 'Sexe :',
                 'choices' => [
-                    'Masculin' => false,
-                    'Féminin' => true,
+                    'Mâle' => false,
+                    'Femelle' => true,
                 ],
                 'expanded' => true, // Pour afficher des boutons radio à la place de la checkbox
                 'multiple' => false, // Un seul choix est possible
@@ -77,8 +90,22 @@ class AnimalType extends AbstractType
                     'placeholder' => 'Puce / Tatouage'
                 ],
             ])
-        ;
-    }
+            ->add('regime', EntityType::class, [
+                'label' => 'Régime Alimentaire :',
+                'class' => Regime::class,
+                'choice_label' => 'nom',
+                'placeholder' => 'Sélectionnez un régime alimentaire',
+                'query_builder' => fn (RegimeRepository $regimeRepository) =>
+                    $regimeRepository->findAllRegime()
+            ])
+            ->add('alimentation', EntityType::class, [
+                'label' => 'Alimentation :',
+                'class' => Alimentation::class,
+                'choice_label' => 'nom',
+                'multiple' => true,
+                'placeholder' => 'Sélectionnez une alimentation',
+            ]);
+        }
 
     public function configureOptions(OptionsResolver $resolver): void
     {

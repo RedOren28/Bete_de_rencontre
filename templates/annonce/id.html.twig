@@ -20,12 +20,28 @@
     </div>
 </div>
 <div class="row">
-    <h2>Animal {{annonce.animal.Nom}} :</h2>
+    <h2>Animal {{annonce.animal.nom}} :</h2>
     <div class="card-body">
-        <p class="card-text">{{annonce.animal.sexe}}</p>
-        <p class="card-text">{{annonce.animal.vermifugation}}</p>
-        <p class="card-text">{{annonce.animal.vaccin}}</p>
-        <p class="card-text">{{annonce.animal.pucetatouage}}</p>
+        <p class="card-text">Sexe : {{annonce.animal.sexe ? "Femelle" : "Mâle"}}</p>
+        <p class="card-text">Régime Alimentaire : {{annonce.animal.regime.nom}}</p>
+
+        {% if annonce.animal.alimentation|length > 0 %}
+            <p class="card-text">Alimentation(s) :</p>
+            <ul>
+                {% for alimentation in annonce.animal.alimentation %}
+                    <li>{{ alimentation.nom }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="card-text">Aucune alimentation renseignée pour cet animal</p>
+        {% endif %}
+
+        <p class="card-text">Date de Naissance : {{ annonce.animal.DateNaissance | date('d/m/Y') }}</p>
+        <p class="card-text">Couleur : {{annonce.animal.couleur.nom}}</p>
+        <p class="card-text">Poil : {{annonce.animal.poil.type}}</p>
+        <p class="card-text">Vermifugation à jour : {{annonce.animal.vermifugation ? "Oui" : "Non"}}</p>
+        <p class="card-text">Vaccin à jour :    {{annonce.animal.vaccin ? "Oui" : "Non"}}</p>
+        <p class="card-text">N° puce / tatouage :   {{annonce.animal.pucetatouage}}</p>
     </div> 
 </div>
 <div>
