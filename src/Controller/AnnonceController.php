@@ -2,15 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\Poil;
 use App\Entity\Image;
+use App\Entity\Regime;
 use App\Entity\Annonce;
+use App\Entity\Couleur;
 use App\Form\AnnonceType;
+use App\Entity\Alimentation;
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AnnonceController extends AbstractController
@@ -24,6 +29,19 @@ class AnnonceController extends AbstractController
             'annonces' => $annonces,
         ]);
     }
+
+    #[Route('/annonce/fetch/{regime}', name: 'app_annonce_fetch')]
+    public function fetchByRegime(string $regime = "" , EntityManagerInterface $entityManager, SerializerInterface $serializer):Response
+    {
+
+        $regime = $entityManager->getRepository(Regime::class)->find($regime);
+
+        // Ajouter cet appel pour récupérer les alimentations associées au régime sélectionné
+        $alimentations = $entityManager->getRepository(Alimentation::class)->findByRegime($regime);
+        
+        return new JsonResponse($serializer->serialize($alimentations, 'json', ['groups' => ['list_alimentations']]));
+    }
+
 
     #[Route('/annonce/create', name: 'app_annonce_create')]
     public function createAnnonce(Request $request, EntityManagerInterface $entityManager): Response
@@ -44,30 +62,6 @@ class AnnonceController extends AbstractController
 
             $animal = $form->get('animal')->getData();
             $annonce->setAnimal($animal);
-
-            // $regimeId = $form->get('animal')['regime'];
-            // $regime = $entityManager->getRepository(Regime::class)->find($regimeId);
-            // $animal->setRegime($regime);
-
-            // // Ajouter cet appel pour récupérer les alimentations associées au régime sélectionné
-            // $alimentations = $entityManager->getRepository(Alimentation::class)->findByRegime($regime);
-
-            // // On récupère les données soumises pour la liaison ManyToMany
-            // $alimentationsIds = $form->get('animal')['alimentations'];
-
-            // // Pour chaque id, on crée un nouvel objet Alimentation et on l'associe à l'annonce
-            // foreach ($alimentationsIds as $alimentationId) {
-            //     $alimentation = $entityManager->getRepository(Alimentation::class)->find($alimentationId);
-            //     $annonce->addAlimentation($alimentation);
-            // }
-
-            $colorId = $form->get('animal')['couleur'];
-            $color = $entityManager->getRepository(Couleur::class)->find($colorId);
-            $animal->setColor($color);
-
-            $poilId = $form->get('animal')['poil'];
-            $poil = $entityManager->getRepository(Poil::class)->find($poilId);
-            $animal->setPoil($poil);
 
             // On récupère les images transmises
             $images = $form->get('images')->getData();

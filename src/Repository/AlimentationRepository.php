@@ -45,13 +45,15 @@ class AlimentationRepository extends ServiceEntityRepository
      */
     public function findByRegime(Regime $regime): array
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.regime = :regime')
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->select('a')
+            ->innerJoin('a.regimes', 'r')
+            ->where('r = :regime')
             ->setParameter('regime', $regime)
-            ->orderBy('a.nom', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
+            ->orderBy('a.nom', 'ASC');
+        
+        return $qb->getQuery()->getResult();
     }
 
 //    /**

@@ -2,9 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\AnimalRepository;
+use App\Entity\Annonce;
+use App\Entity\Alimentation;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AnimalRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
 class Animal
@@ -44,6 +48,14 @@ class Animal
 
     #[ORM\ManyToOne(inversedBy: 'animals')]
     private ?Regime $Regime = null;
+
+    #[ORM\ManyToMany(targetEntity: Alimentation::class, inversedBy: 'animals')]
+    private Collection $alimentation;
+
+    public function __construct()
+    {
+        $this->alimentation = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -166,6 +178,30 @@ class Animal
     public function setRegime(?Regime $Regime): self
     {
         $this->Regime = $Regime;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Alimentation>
+     */
+    public function getalimentation(): Collection
+    {
+        return $this->alimentation;
+    }
+
+    public function addAlimentation(Alimentation $alimentation): self
+    {
+        if (!$this->alimentation->contains($alimentation)) {
+            $this->alimentation->add($alimentation);
+        }
+
+        return $this;
+    }
+
+    public function removeAlimentation(Alimentation $alimentation): self
+    {
+        $this->alimentation->removeElement($alimentation);
 
         return $this;
     }

@@ -40,8 +40,8 @@ class AnimalType extends AbstractType
             ->add('sexe', ChoiceType::class, [
                 'label' => 'Sexe :',
                 'choices' => [
-                    'Masculin' => false,
-                    'Féminin' => true,
+                    'Mâle' => false,
+                    'Femelle' => true,
                 ],
                 'expanded' => true, // Pour afficher des boutons radio à la place de la checkbox
                 'multiple' => false, // Un seul choix est possible
@@ -97,40 +97,14 @@ class AnimalType extends AbstractType
                 'placeholder' => 'Sélectionnez un régime alimentaire',
                 'query_builder' => fn (RegimeRepository $regimeRepository) =>
                     $regimeRepository->findAllRegime()
+            ])
+            ->add('alimentation', EntityType::class, [
+                'label' => 'Alimentation :',
+                'class' => Alimentation::class,
+                'choice_label' => 'nom',
+                'multiple' => true,
+                'placeholder' => 'Sélectionnez une alimentation',
             ]);
-
-            $formModifier = function (FormInterface $form, Regime $regime = null) {
-                $alimentation = $regime === null ? [] : $this->alimentationRepository->findByRegime($regime);
-
-                $form->add('alimentation', EntityType::class, [
-                    'label' => 'Alimentation :',
-                    'class' => Alimentation::class,
-                    'choice_label' => 'nom',
-                    'multiple' => true,
-                    'disabled' => $regime === null,
-                    'choices' => $alimentation,
-                    'placeholder' => 'Sélectionnez une alimentation',
-                ]);
-            };
-
-            $builder->addEventListener(
-                FormEvents::PRE_SET_DATA,
-                function (FormEvent $event) use ($formModifier) {
-                    $data = $event->getData();
-                  
-    
-                    $formModifier($event->getForm(), $data->getRegime());
-                }
-            );
-    
-            $builder->get('regime')->addEventListener(
-                FormEvents::POST_SUBMIT,
-                function (FormEvent $event) use ($formModifier) {
-                    $regime = $event->getForm()->getData();
-    
-                    $formModifier($event->getForm()->getParent(), $regime);
-                }
-            );
         }
 
     public function configureOptions(OptionsResolver $resolver): void

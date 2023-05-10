@@ -47,18 +47,6 @@ class Regime
         return $this;
     }
 
-    public function getRegime(): ?Regime
-    {
-        return $this->regime;
-    }
-
-    public function setRegime(?Regime $regime): self
-    {
-        $this->regime = $regime;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Animal>
      */
