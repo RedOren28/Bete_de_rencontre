@@ -23,6 +23,8 @@
     <h2>Animal {{annonce.animal.nom}} :</h2>
     <div class="card-body">
         <p class="card-text">Sexe : {{annonce.animal.sexe ? "Femelle" : "Mâle"}}</p>
+        <p class="card-text">Espèce : {{annonce.animal.espece.nom}}</p>
+        <p class="card-text">Race : {{annonce.animal.race.nom}}</p>
         <p class="card-text">Régime Alimentaire : {{annonce.animal.regime.nom}}</p>
 
         {% if annonce.animal.alimentation|length > 0 %}

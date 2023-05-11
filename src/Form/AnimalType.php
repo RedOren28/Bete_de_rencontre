@@ -3,15 +3,18 @@
 namespace App\Form;
 
 use App\Entity\Poil;
+use App\Entity\Race;
 use App\Entity\Animal;
+use App\Entity\Espece;
 use App\Entity\Regime;
 use App\Entity\Couleur;
 use App\Entity\Alimentation;
+use App\Repository\EspeceRepository;
+use App\Repository\RegimeRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\AlimentationRepository;
-use App\Repository\RegimeRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,13 +24,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class AnimalType extends AbstractType
 {
-    private $alimentationRepository;
-
-    public function __construct(AlimentationRepository $alimentationRepository)
-    {
-        $this->alimentationRepository = $alimentationRepository;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -104,6 +100,20 @@ class AnimalType extends AbstractType
                 'choice_label' => 'nom',
                 'multiple' => true,
                 'placeholder' => 'Sélectionnez une alimentation',
+            ])
+            ->add('espece', EntityType::class, [
+                'label' => 'Espèce :',
+                'class' => Espece::class,
+                'choice_label' => 'nom',
+                'placeholder' => 'Sélectionnez une espèce',
+                'query_builder' => fn (EspeceRepository $especeRepository) =>
+                    $especeRepository->findAllEspece()
+            ])
+            ->add('race', EntityType::class, [
+                'label' => 'Race :',
+                'class' => Race::class,
+                'choice_label' => 'nom',
+                'placeholder' => 'Sélectionnez une race',
             ]);
         }
 
