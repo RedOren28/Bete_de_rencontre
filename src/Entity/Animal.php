@@ -52,6 +52,12 @@ class Animal
     #[ORM\ManyToMany(targetEntity: Alimentation::class, inversedBy: 'animals')]
     private Collection $alimentation;
 
+    #[ORM\ManyToOne(inversedBy: 'animals')]
+    private ?Espece $Espece = null;
+
+    #[ORM\ManyToOne(inversedBy: 'animals')]
+    private ?Race $Race = null;
+
     public function __construct()
     {
         $this->alimentation = new ArrayCollection();
@@ -202,6 +208,30 @@ class Animal
     public function removeAlimentation(Alimentation $alimentation): self
     {
         $this->alimentation->removeElement($alimentation);
+
+        return $this;
+    }
+
+    public function getEspece(): ?Espece
+    {
+        return $this->Espece;
+    }
+
+    public function setEspece(?Espece $Espece): self
+    {
+        $this->Espece = $Espece;
+
+        return $this;
+    }
+
+    public function getRace(): ?Race
+    {
+        return $this->Race;
+    }
+
+    public function setRace(?Race $Race): self
+    {
+        $this->Race = $Race;
 
         return $this;
     }

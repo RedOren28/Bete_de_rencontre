@@ -7,8 +7,10 @@ use App\Entity\Image;
 use App\Entity\Regime;
 use App\Entity\Annonce;
 use App\Entity\Couleur;
-use App\Form\AnnonceType;
 use App\Entity\Alimentation;
+use App\Entity\Espece;
+use App\Entity\Race;
+use App\Form\AnnonceType;
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +32,7 @@ class AnnonceController extends AbstractController
         ]);
     }
 
-    #[Route('/annonce/fetch/{regime}', name: 'app_annonce_fetch')]
+    #[Route('/regime/fetch/{regime}', name: 'app_annonce_fetch_regime')]
     public function fetchByRegime(string $regime = "" , EntityManagerInterface $entityManager, SerializerInterface $serializer):Response
     {
 
@@ -40,6 +42,18 @@ class AnnonceController extends AbstractController
         $alimentations = $entityManager->getRepository(Alimentation::class)->findByRegime($regime);
         
         return new JsonResponse($serializer->serialize($alimentations, 'json', ['groups' => ['list_alimentations']]));
+    }
+
+    #[Route('/espece/fetch/{espece}', name: 'app_annonce_fetch_espece')]
+    public function fetchByEspece(string $espece = "" , EntityManagerInterface $entityManager, SerializerInterface $serializer):Response
+    {
+
+        $espece = $entityManager->getRepository(Espece::class)->find($espece);
+
+        // Ajouter cet appel pour récupérer la race associée ç l'espèce sélectionnée
+        $races = $entityManager->getRepository(Race::class)->findByEspece($espece);
+        
+        return new JsonResponse($serializer->serialize($races, 'json', ['groups' => ['list_races']]));
     }
 
 

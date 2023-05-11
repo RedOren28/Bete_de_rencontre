@@ -8,7 +8,7 @@ $(document).ready( function () {
     const selectedRegimeId = regimeSelect.value;
 
     // envoi de la requête AJAX pour récupérer les alimentations associées au régime sélectionné
-    fetch(`/annonce/fetch/${selectedRegimeId}`)
+    fetch(`/regime/fetch/${selectedRegimeId}`)
       .then(response => response.json())
       .then(alimentations => {
         // récupération de l'élément select pour les alimentations
@@ -26,6 +26,5 @@ $(document).ready( function () {
         });
       });
   });
-
 });
 
