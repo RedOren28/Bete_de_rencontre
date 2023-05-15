@@ -18,7 +18,7 @@ class Alimentation
     private ?int $id = null;
 
     #[Groups(['list_alimentations'])]
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 30)]
     private ?string $nom = null;
 
     #[ORM\ManyToMany(targetEntity: Regime::class, mappedBy: 'Alimentation')]

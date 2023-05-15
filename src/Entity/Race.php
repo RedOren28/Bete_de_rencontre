@@ -18,7 +18,7 @@ class Race
     private ?int $id = null;
 
     #[Groups(['list_races'])]
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 30)]
     private ?string $nom = null;
 
     #[ORM\ManyToOne(inversedBy: 'Race')]

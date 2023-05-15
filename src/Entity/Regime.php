@@ -15,7 +15,7 @@ class Regime
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 30)]
     private ?string $nom = null;
 
     #[ORM\OneToMany(mappedBy: 'Regime', targetEntity: Animal::class)]
