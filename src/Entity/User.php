@@ -20,7 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180, unique: true)]
+    #[ORM\Column(length: 50, unique: true)]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -38,11 +38,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     private ?string $Prenom = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $Adresse = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Annonce::class, orphanRemoval: true)]
     private ?Collection $annonces = null;
+
+    #[ORM\Column(length: 30, nullable: true)]
+    private ?string $Telephone = null;
 
     public function __construct()
     {
@@ -181,6 +184,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $annonce->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->Telephone;
+    }
+
+    public function setTelephone(?string $Telephone): self
+    {
+        $this->Telephone = $Telephone;
 
         return $this;
     }
