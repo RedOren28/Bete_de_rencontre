@@ -24,18 +24,20 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
         $faker = Factory::create('fr_FR');
 
         // Liste des choses à ajouter
-        $couleurs = array('acajou','arlequin','aubère','belton','sésame','sésame rouge','sésame noir','bicolore','blanc','bleu','blenheim','bigaré','bringé','caille','cannelle','cerf','charbonné','châtain','pluricolore','rouanné','tacheté','tiqueté','zain','chevreuil','chocolat','citron','crème','écaille de tortue','faon','fauve','foie','gris','isabelle','puce','lilas','louvet','marron','merle','moucheté','multicolore','noir','noir et feu','roux','rubis','sable','tigré','alezan','appaloosa','bai','palomino','pie','rouan','souris','blond','papillon','ombré','panaché','pie','particolore','parsemé','pie noir','pie rouge');
-        $poils = array('acajou','arlequin','aubère','belton');
-        $regimes = array('acajou','arlequin','aubère','belton');
-        $alimentations = array('acajou','arlequin','aubère','belton');
-        $especes = array('acajou','arlequin','aubère','belton');
-        $races = array('acajou','arlequin','aubère','belton');
-
+        $couleurs = array('-Autre-','acajou','alezan','appaloosa','arlequin','aubère','bai','belton','bicolore','bigaré','blanc','blenheim','bleu','blond','bringé','caille','cannelle','cerf','charbonné','chevreuil','chocolat','châtain','citron','crème','écaille de tortue','faon','fauve','foie','gris','isabelle','lilas','louvet','marron','merle','moucheté','multicolore','noir','noir et feu','ombré','palomino','panaché','papillon','parsemé','particolore','pie','pie','pie noir','pie rouge','pluricolore','puce','rouan','rouanné','roux','rubis','sable','souris','sésame','sésame noir','sésame rouge','tacheté','tigré','tiqueté','zain');
+        $poils = array('nu','ras','court','mi-long','long');
+        $carnivore = array('insectes','poissons','agneau','boeuf','dinde','porc','poulet');
+        $omnivore = array('céréales','fruits','herbe','légumes','insectes','poissons','agneau','boeuf','dinde','porc','poulet');
+        $vegetarien = array('céréales','fruits','herbe','légumes');
+        $chats = array('-Autre-','Abyssin','American Bobtail','American Curl','American Shorthair','American Wirehair','Angora Turc','Balinais','Bengal','Birman','Bleu Russe','Bobtail Japonais','Bombay','British Longhair','British Shorthair','Ceylan','Chartreux','Cornish Rex','Devon Rex','Européen','Exotic Shorthair','German Rex','Havana Brown','Highland Fold','Javanais','Lynx Domestique','Maine Coon','Mandarin','Manx','Mau Egyptien','Norvégien','Ocicat','Oriental Shorthair','Persan','Ragdoll','Savannah','Scottish Fold','Siamois','Sibérien','Somali','Sphynx','Thaï','Tonkinois','York Chocolat');
+        $chevaux = array('-Autre-','Andalou','Anglo arabe','Appaloosa','Arabe','Barbe','Boulonnais','Breton camarguais','Cheval de Sang Belge','Cheval de Selle Français','Cheval miniature','Cob normand','Comtois','Connemara','Dartmoor','Falabella','Fjord','Frison','Haflinger','Henson','Highland','Lipizzan','Lusitanien','Merens','Mustang','New forest','Palomino','Percheron','Pinto','Poitevin','Poney Français de selle','Pottok','Pur sang anglais','Pur sang arabe','Quarter Horse','Shetland','Shire','Trait breton','Trait du Nord','Trait mulassier poitevin','Trotteur','Welsh cob');
+        $chiens = array('-Autre-','Akita Inu','American hairless Terrier','American staffordshire terrier','Barzoï','Basset','Beagle','Beauceron','Bedlington Terrier','Berger Allemand','Berger Australien','Berger blanc','Berger de Groenendael','Berger de Tervueren','Berger Malinois','Bichon','Bobtail','Border Collie','Boston Terrier','Bouledogue','Bouledogue Américain','Bouledogue Anglais','Bouledogue Français','Bouvier Bernois','Bouvier des Flandres','Boxer','Brabançon','Braque','Briard','Bull Terrier','Bullmastiff','Cairn Terrier','Cane Corso','Caniche','Carlin','Cavalier King Charles','Chien Chinois à Crête','Chien nu du Pérou','Chihuahua','Chow Chow','Cocker','Colley','Coton de Tulear','Dalmatien','Dobermann','Dogue Allemand','Dogue Argentin','Dogue de Bordeaux','Drathaar','Epagneul','Epagneul nain continental','Fox Terrier','Golden Retriever','Grand Bleu de Gascogne','Griffon','Husky','Jack Russell','Labrador','Labrit','Leonberg','Lhassa Apso','Lion d\'Occitanie','Lévrier','Malamute','Mastiff','Montagne des Pyrénées','Mâtin de Naples','Mâtin des Pyrénées','Nizinny','Pinscher','Pointer','Pékinois','Retriever','Rottweiler','Saint Bernard','Saint Hubert','Schnauzer','Setter','Shar Peï','Shetland','Shiba Inu','Shih Tzu','Spitz','Springer Spaniel','Staffordshire Bull Terrier','Teckel','Terre Neuve','West Highland White Terrier','Whippet','Yorkshire');
+        $oiseaux = array('-Autre-','Perroquet');
+        $reptiles = array('-Autre-','Anaconda','Boa','Couleuvre','Elaphe','Iguane','Lampropeltis','Python');
+        $rongeurs = array('-Autre-','Chien de prairie','Cochon d\'Inde','Gerbille','Hamster','Lapin','Rat','Souris');
 
         // Admin
         $admin = new User;
@@ -67,36 +69,121 @@ class AppFixtures extends Fixture
             $manager->persist($unpoil);
         }
 
-        // Régime
-        foreach ($regimes as $regime) {
-            $unRegime = new Regime();
-            $unRegime->setNom($regime);
+        // Regime Carnivore
+        $Carnivore= new Regime();
+        $Carnivore->setNom('Carnivore');
 
-            $manager->persist($unRegime);
+        //Alimentation Carnivore
+        foreach ($carnivore as $carni) {
+            $unCarni = new Alimentation();
+            $unCarni->setNom($carni);
+            $unCarni->addRegime($Carnivore);
+
+            $manager->persist($unCarni);
         }
 
-        // Alimentation
-        foreach ($alimentations as $alimentation) {
-            $uneAlimentation = new Alimentation();
-            $uneAlimentation->setNom($alimentation);
+        // Regime Omnivore
+        $Omnivore= new Regime();
+        $Omnivore->setNom('Omnivore');
 
-            $manager->persist($uneCouleur);
+        //Alimentation Omnivore
+        foreach ($omnivore as $omni) {
+            $unOmni = new Alimentation();
+            $unOmni->setNom($omni);
+            $unOmni->addRegime($Omnivore);
+
+            $manager->persist($unOmni);
+        }
+         
+        // Regime Végétarien
+        $Vegetarien= new Regime();
+        $Vegetarien->setNom('Vegetarien');
+
+        //Alimentation Végétarien
+        foreach ($vegetarien as $vege) {
+            $unVege = new Alimentation();
+            $unVege->setNom($vege);
+            $unVege->addRegime($Vegetarien);
+
+            $manager->persist($unVege);
         }
 
-        // Espèce
-        foreach ($especes as $espece) {
-            $uneEspece = new Espece();
-            $uneEspece->setNom($espece);
+        // Espèce Chat
+        $Chat= new Espece();
+        $Chat->setNom('Chat');
 
-            $manager->persist($uneEspece);
+        // Race Chat
+        foreach ($chats as $chat) {
+            $unChat = new Race();
+            $unChat->setNom($chat);
+            $unChat->setEspece($Chat);
+
+            $manager->persist($unChat);
         }
 
-        // Race
-        foreach ($races as $race) {
-            $uneRace = new Race();
-            $uneRace->setNom($race);
+        // Espèce Cheval
+        $Cheval= new Espece();
+        $Cheval->setNom('Cheval');
 
-            $manager->persist($uneRace);
+        // Race Cheval
+        foreach ($chevaux as $cheval) {
+            $unCheval = new Race();
+            $unCheval->setNom($cheval);
+            $unCheval->setEspece($Cheval);
+
+            $manager->persist($unCheval);
+        }
+
+        // Espèce Chien
+        $Chien= new Espece();
+        $Chien->setNom('Chien');
+
+        // Race Chien
+        foreach ($chiens as $chien) {
+            $unChien = new Race();
+            $unChien->setNom($chien);
+            $unChien->setEspece($Chien);
+
+            $manager->persist($unChien);
+        }
+
+        // Espèce Oiseau
+        $Oiseau= new Espece();
+        $Oiseau->setNom('Oiseau');
+
+        // Race Oiseau
+        foreach ($oiseaux as $oiseau) {
+            $unOiseau = new Race();
+            $unOiseau->setNom($oiseau);
+            $unOiseau->setEspece($Oiseau);
+
+            $manager->persist($unOiseau);
+        }
+
+        // Espèce Reptile
+        $Reptile= new Espece();
+        $Reptile->setNom('Reptile');
+
+        // Race Reptile
+        foreach ($reptiles as $reptile) {
+            $unReptile = new Race();
+            $unReptile->setNom($reptile);
+            $unReptile->setEspece($Reptile);
+
+            $manager->persist($unReptile);
+        }
+
+        // Espèce Rongeur
+        $Rongeur= new Espece();
+        $Rongeur->setNom('Rongeur');
+
+        // Race Rongeur
+        foreach ($rongeurs as $rongeur) {
+            $unRongeur = new Race();
+            $unRongeur->setNom($rongeur);
+            $unRongeur->setEspece($Rongeur);
+
+            $manager->persist($unRongeur);
         }
 
         $manager->flush();

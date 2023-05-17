@@ -21,7 +21,7 @@ class Race
     #[ORM\Column(length: 30)]
     private ?string $nom = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Race')]
+    #[ORM\ManyToOne(inversedBy: 'Race', cascade: ["persist"])]
     private ?Espece $espece = null;
 
     #[ORM\OneToMany(mappedBy: 'Race', targetEntity: Animal::class)]

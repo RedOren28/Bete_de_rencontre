@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\AlimentationRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AlimentationRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AlimentationRepository::class)]
@@ -21,10 +21,10 @@ class Alimentation
     #[ORM\Column(length: 30)]
     private ?string $nom = null;
 
-    #[ORM\ManyToMany(targetEntity: Regime::class, mappedBy: 'Alimentation')]
+    #[ORM\ManyToMany(targetEntity: Regime::class, mappedBy: 'alimentations', cascade: ["persist"])]
     private Collection $regimes;
 
-    #[ORM\ManyToMany(targetEntity: Animal::class, mappedBy: 'Alimentations')]
+    #[ORM\ManyToMany(targetEntity: Animal::class, mappedBy: 'alimentations')]
     private Collection $animals;
 
     public function __construct()

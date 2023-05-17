@@ -22,12 +22,12 @@ class Regime
     private Collection $animals;
 
     #[ORM\ManyToMany(targetEntity: Alimentation::class, inversedBy: 'regimes')]
-    private Collection $Alimentation;
+    private Collection $alimentations;
 
     public function __construct()
     {
         $this->animals = new ArrayCollection();
-        $this->Alimentation = new ArrayCollection();
+        $this->alimentations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,15 +80,15 @@ class Regime
     /**
      * @return Collection<int, Alimentation>
      */
-    public function getAlimentation(): Collection
+    public function getAlimentations(): Collection
     {
-        return $this->Alimentation;
+        return $this->alimentations;
     }
 
     public function addAlimentation(Alimentation $alimentation): self
     {
-        if (!$this->Alimentation->contains($alimentation)) {
-            $this->Alimentation->add($alimentation);
+        if (!$this->alimentations->contains($alimentation)) {
+            $this->alimentations->add($alimentation);
         }
 
         return $this;
@@ -96,7 +96,7 @@ class Regime
 
     public function removeAlimentation(Alimentation $alimentation): self
     {
-        $this->Alimentation->removeElement($alimentation);
+        $this->alimentations->removeElement($alimentation);
 
         return $this;
     }
