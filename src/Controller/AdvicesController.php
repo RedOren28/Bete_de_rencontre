@@ -13,4 +13,11 @@ class AdvicesController extends AbstractController
     {
         return $this->render('advices/index.html.twig');
     }
+
+    #[Route('/advices/{category}/{animal}', name: 'app_advices_fiches')]
+    public function fiches($category, $animal): Response
+    {
+        $template = 'advices/'.$category.'/'.$animal.'.html.twig';
+        return $this->render($template);
+    }
 }
