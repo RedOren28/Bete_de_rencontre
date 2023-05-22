@@ -86,6 +86,7 @@ h1{
 
 li{
     text-decoration: none;
+    list-style:none;
 }
 
 .footer-basic {
@@ -120,6 +121,11 @@ li{
     font-size:13px;
     color:#aaa;
     margin-bottom:0;
+}
+
+.href{
+    text-decoration: none; 
+    color: black;
 }
 
 /* #content {
