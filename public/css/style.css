@@ -1,5 +1,6 @@
 body{
-    background-image: url("../theme_vert.png") ;
+    /* background-image: url("../theme_vert.png") ; */
+    background-color: rgb(211, 253, 211);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
