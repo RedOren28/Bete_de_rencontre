@@ -84,7 +84,7 @@ h1{
     justify-content: center;
 }
 
-li{
+.no-style{
     list-style:none;
 }
 
@@ -123,8 +123,13 @@ li{
 }
 
 .href{
-    /* text-decoration: none;  */
+    text-decoration: none;
     color: black;
+}
+
+.href:hover{
+    text-decoration: none;
+    color: green;
 }
 
 /* #content {
