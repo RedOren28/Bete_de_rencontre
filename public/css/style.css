@@ -1,5 +1,6 @@
 body{
-    background-image: url("../theme_vert.png") ;
+    /* background-image: url("../theme_vert.png") ; */
+    background-color: rgb(211, 253, 211);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -83,8 +84,8 @@ h1{
     justify-content: center;
 }
 
-li{
-    text-decoration: none;
+.no-style{
+    list-style:none;
 }
 
 .footer-basic {
@@ -119,6 +120,16 @@ li{
     font-size:13px;
     color:#aaa;
     margin-bottom:0;
+}
+
+.href{
+    text-decoration: none;
+    color: black;
+}
+
+.href:hover{
+    text-decoration: none;
+    color: green;
 }
 
 /* #content {

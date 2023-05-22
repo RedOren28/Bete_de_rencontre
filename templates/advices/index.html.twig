@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiches Conseils{% endblock %}
+
+{% block body %}
+
+<h1>Fiches Conseils :</h1>
+
+<h4 style="text-align: center;">Voici toutes nos fiches conseils :</h4>
+<div class="row">
+    <ul class="no-style">
+        <li><h6>Alimentation :</h6></li>
+        <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'eat', 'animal': 'dog' }) }}">- Chien</a></li>
+        <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'eat', 'animal': 'cat' }) }}">- Chat</a></li>
+        <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'eat', 'animal': 'horse' }) }}">- Cheval</a></li>
+        <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'eat', 'animal': 'rodents' }) }}">- Rongeurs</a></li>
+        <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'eat', 'animal': 'reptiles' }) }}">- Reptiles</a></li>
+    </ul>
+    <ul class="no-style">
+        <li><h6>Reproduction :</h6></li>
+        <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'breeding', 'animal': 'dog' }) }}">- Chien</a></li>
+        <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'breeding', 'animal': 'cat' }) }}">- Chat</a></li>
+        <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'breeding', 'animal': 'horse' }) }}">- Cheval</a></li>
+    </ul>
+    <ul class="no-style">
+        <li><h6>Soins :</h6></li>
+        <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'care', 'animal': 'dog' }) }}">- Chien</a></li>
+        <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'care', 'animal': 'cat' }) }}">- Chat</a></li>
+        <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'care', 'animal': 'horse' }) }}">- Cheval</a></li>
+    </ul>
+</div>
+{% endblock %}
