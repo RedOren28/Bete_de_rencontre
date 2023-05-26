@@ -4,13 +4,13 @@
 
 {% block body %}
 
-<h1>Fiches Conseils :</h1>
+<h1>Fiches Conseils :</h1><br>
 
-<h4 style="text-align: center; margin-bottom: 20px;">Voici toutes nos fiches conseils :</h4>
-<div class="row text-center">
+<h3 style="text-align: center;">Voici toutes nos fiches conseils :</h4>
+<div class="row">
     <div class="col">
         <ul class="no-style d-flex flex-column justify-content-center align-items-center">
-            <li><h6>Alimentation :</h6></li>
+            <li><h4>Alimentation :</h6></li><br>
             <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'eat', 'animal': 'dog' }) }}">- Chien</a></li>
             <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'eat', 'animal': 'cat' }) }}">- Chat</a></li>
             <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'eat', 'animal': 'horse' }) }}">- Cheval</a></li>
@@ -20,7 +20,7 @@
     </div>
     <div class="col">
         <ul class="no-style d-flex flex-column justify-content-center align-items-center">
-            <li><h6>Reproduction :</h6></li>
+            <li><h4>Reproduction :</h6></li><br>
             <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'breeding', 'animal': 'dog' }) }}">- Chien</a></li>
             <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'breeding', 'animal': 'cat' }) }}">- Chat</a></li>
             <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'breeding', 'animal': 'horse' }) }}">- Cheval</a></li>
@@ -30,7 +30,7 @@
     </div>
     <div class="col">
         <ul class="no-style d-flex flex-column justify-content-center align-items-center">
-            <li><h6>Soins :</h6></li>
+            <li><h4>Soins :</h6></li><br>
             <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'care', 'animal': 'dog' }) }}">- Chien</a></li>
             <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'care', 'animal': 'cat' }) }}">- Chat</a></li>
             <li><a class="href" href="{{ path('app_advices_fiches', { 'category': 'care', 'animal': 'horse' }) }}">- Cheval</a></li>
