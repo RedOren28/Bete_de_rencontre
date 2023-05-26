@@ -12,6 +12,7 @@ use App\Entity\Couleur;
 use App\Entity\Alimentation;
 use App\Entity\Annonce;
 use App\Entity\Animal;
+use App\Entity\Image;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -199,8 +200,12 @@ class AppFixtures extends Fixture
         $annonce->setDatePublication(new \DateTime);
         $annonce->setDateModification(new \DateTime);
 
-        //User
+        //Utilisateur
         $annonce->setUser($admin);
+
+        //Image
+        $image = new Image();
+        $image->setUrl('chien.png');
 
         //Animal
         $animal = new Animal();
@@ -255,6 +260,7 @@ class AppFixtures extends Fixture
         
         //Affectation de l'animal à l'annonce
         $annonce->setAnimal($animal);
+        $annonce->addImage($image);
 
         $manager->persist($annonce);
 
