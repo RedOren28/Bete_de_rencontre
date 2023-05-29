@@ -2,9 +2,16 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Poil;
+use App\Entity\Race;
 use App\Entity\User;
 use App\Entity\Image;
+use App\Entity\Animal;
+use App\Entity\Espece;
+use App\Entity\Regime;
 use App\Entity\Annonce;
+use App\Entity\Couleur;
+use App\Entity\Alimentation;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -53,5 +60,12 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateurs', 'fa-solid fa-users', User::class);
         yield MenuItem::linkToCrud('Annonces', 'fa-solid fa-signs-post', Annonce::class);
         yield MenuItem::linkToCrud('Images', 'fa-solid fa-image', Image::class);
+        yield MenuItem::linkToCrud('Animaux', 'fa-solid fa-users', Animal::class);
+        yield MenuItem::linkToCrud('Alimentation', 'fa-solid fa-users', Alimentation::class);
+        yield MenuItem::linkToCrud('Couleur', 'fa-solid fa-users', Couleur::class);
+        yield MenuItem::linkToCrud('Espece', 'fa-solid fa-users', Espece::class);
+        yield MenuItem::linkToCrud('Poil', 'fa-solid fa-users', Poil::class);
+        yield MenuItem::linkToCrud('Race', 'fa-solid fa-users', Race::class);
+        yield MenuItem::linkToCrud('Regime', 'fa-solid fa-users', Regime::class);
     }
 }
