@@ -60,12 +60,12 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateurs', 'fa-solid fa-users', User::class);
         yield MenuItem::linkToCrud('Annonces', 'fa-solid fa-signs-post', Annonce::class);
         yield MenuItem::linkToCrud('Images', 'fa-solid fa-image', Image::class);
-        yield MenuItem::linkToCrud('Animaux', 'fa-solid fa-users', Animal::class);
-        yield MenuItem::linkToCrud('Alimentation', 'fa-solid fa-users', Alimentation::class);
-        yield MenuItem::linkToCrud('Couleur', 'fa-solid fa-users', Couleur::class);
-        yield MenuItem::linkToCrud('Espece', 'fa-solid fa-users', Espece::class);
-        yield MenuItem::linkToCrud('Poil', 'fa-solid fa-users', Poil::class);
-        yield MenuItem::linkToCrud('Race', 'fa-solid fa-users', Race::class);
-        yield MenuItem::linkToCrud('Regime', 'fa-solid fa-users', Regime::class);
+        yield MenuItem::linkToCrud('Animaux', 'fas fa-paw', Animal::class);
+        yield MenuItem::linkToCrud('Poil', 'fas fa-feather', Poil::class);
+        yield MenuItem::linkToCrud('Couleur', 'fas fa-tint', Couleur::class);
+        yield MenuItem::linkToCrud('Espece', 'fas fa-dog', Espece::class);
+        yield MenuItem::linkToCrud('Race', 'fas fa-dog-leashed', Race::class);
+        yield MenuItem::linkToCrud('Regime', 'fas fa-bone', Regime::class);
+        yield MenuItem::linkToCrud('Alimentation', 'fas fa-carrot', Alimentation::class);
     }
 }
