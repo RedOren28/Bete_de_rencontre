@@ -195,8 +195,8 @@ class AppFixtures extends Fixture
 
         // Annonces
         $annonce = new Annonce();
-        $annonce->setTitre('aaa');
-        $annonce->setDescription('aaa');
+        $annonce->setTitre('Reproduction berger australien');
+        $annonce->setDescription('Bonjour, je cherche à faire reproduire ma jeune chienne de 2 ans avec un autre berger autralien.');
         $annonce->setDatePublication(new \DateTime);
         $annonce->setDateModification(new \DateTime);
 
@@ -209,7 +209,7 @@ class AppFixtures extends Fixture
 
         //Animal
         $animal = new Animal();
-        $animal->setNom('aaa');
+        $animal->setNom('Natsu');
         $animal->setSexe(1);
         $animal->setVermifugation(1);
         $animal->setVaccin(1);

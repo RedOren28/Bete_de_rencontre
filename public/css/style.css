@@ -14,12 +14,6 @@ body{
     color: black;
 }
 
-.row {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-}
-
 .filter{
     display: block;
     position: sticky;
@@ -73,17 +67,23 @@ form{
     border-radius: 15px;
 }
 
+.card{
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    background-color: rgba(5, 95, 53, 0.2);
+}
+
 h1{
     display: flex;
     justify-content: center;
 }
 
-.row {
+/* .row {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10%; 
-}
+} */
 
 .btn-success:hover{
     color:#198754;

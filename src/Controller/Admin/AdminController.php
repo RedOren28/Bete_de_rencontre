@@ -64,7 +64,7 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Poil', 'fas fa-feather', Poil::class);
         yield MenuItem::linkToCrud('Couleur', 'fas fa-tint', Couleur::class);
         yield MenuItem::linkToCrud('Espece', 'fas fa-dog', Espece::class);
-        yield MenuItem::linkToCrud('Race', 'fas fa-dog-leashed', Race::class);
+        yield MenuItem::linkToCrud('Race', 'fa-solid fa-shield-dog', Race::class);
         yield MenuItem::linkToCrud('Regime', 'fas fa-bone', Regime::class);
         yield MenuItem::linkToCrud('Alimentation', 'fas fa-carrot', Alimentation::class);
     }
