@@ -25,10 +25,19 @@
 
 ## Utilisation
 
-- Fonctionnalités du site
+Git Clone le projet avec la commande => `git clone https://github.com/RedOren28/Bete_de_rencontre.git`
+
+Se placer dans le dossier créer puis lancer les différentes commandes suivantes:
+- `composer install`
+- Modifier le chemin de votre database dans le fichier .env du projet et éxécuter la commande : `symfony console doctrine:database:create`
+- `symfony console doctrine:fixtures:load`
+
+## Fonctionnalités du site
+Bête de Rencontre est un site mettant en relation les propriétaires d’animaux afin de facilité leur reproduction et ainsi aider à la préservation des races. Les propriétaires pourront créer des annonces pour mettre en avant leur animal. Et rechercher parmi les annonces selon les critères de leurs choix.
+Ainsi, des fiches conseils seront mis à leur disposition afin de s’occuper au mieux de leur animal de compagnie.
+
 
 ### Créer avec :
-<!-- ![Test](https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=Tableau&logoColor=white") -->
 
 [![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/fr/)
 [![Apache 2](https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=Apache&logoColor=white)](https://httpd.apache.org/)
@@ -49,10 +58,4 @@
 #### Mes réseaux :
 
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://GitHub.com/RedOren28/)
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/clem.chvrr/?hl=fr)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/cl%C3%A9ment-chevrier/)
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/527197181455761449)
-
-#### Stats :
-
-![Langues](https://github-readme-stats.vercel.app/api/top-langs/?username=RedOren28)
