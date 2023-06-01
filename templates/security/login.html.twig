@@ -3,45 +3,58 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="d-flex justify-content-center p-5 mt-5  align-item-center mx-auto ">
-            <form method="post" class="col-md-6 row">
-                {% if error %}
-                    <div class="alert alert-danger">Adresse mail et/ou mot de passe incorrect</div>
-                    {# <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div> #}
-                {% endif %}
+<div class="container">
+    <div class="d-flex justify-content-center p-5 mt-5  align-item-center mx-auto ">
+        <form method="post" class="col-md-6 row">
+            {% if error %}
+                <!-- Message d'erreur en cas d'adresse e-mail ou de mot de passe incorrects -->
+                <div class="alert alert-danger">Adresse mail et/ou mot de passe incorrect</div>
+                {# <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div> #}
+            {% endif %}
 
-                {% if app.request.query.get('redirected') %}
-                    <div class="alert alert-warning" role="alert">
-                        Vous devez vous connecter pour accéder à cette page.
-                    </div>
-                {% endif %}
-
-                {% if app.user %}
-                    <div class="alert alert-danger">
-                        Vous êtes connecter en tant que {{ app.user.userIdentifier }} <br> <a href="{{ path('app_logout') }}">Se déconnecter</a>
-                    </div>
-                {% endif %}
-
-                <h1 class="h3 mb-3 font-weight-normal">Connexion :</h1>
-                <label for="inputEmail" class="form-label col-12 col-md-3">Email :</label>
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus placeholder="pierre.dupont@gmail.com">
-
-                <label for="inputPassword" class="form-label col-12 col-md-3">Password :</label>
-                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="*************">
-
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="{{ path('app_forgot_password_request')}}">Mot de passe oublié</a>
-                    </li>
-                </ul>
-                <p>Vous n'avez pas encore de compte ?<br>Alors <a href="{{ path('app_register')}}">créez vous un compte</a> dès maintenant !</p>
-                <div class="d-flex justify-content-end">
-                    <button class="btn btn-success" type="submit">Se connecter</button>
+            {% if app.request.query.get('redirected') %}
+                <!-- Message d'avertissement pour demander la connexion avant d'accéder à la page -->
+                <div class="alert alert-warning" role="alert">
+                    Vous devez vous connecter pour accéder à cette page.
                 </div>
-            </form>
-        </div>
+            {% endif %}
+
+            {% if app.user %}
+                <!-- Message indiquant que l'utilisateur est déjà connecté avec un lien de déconnexion -->
+                <div class="alert alert-danger">
+                    Vous êtes connecter en tant que {{ app.user.userIdentifier }} <br> <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                </div>
+            {% endif %}
+
+            <h1 class="h3 mb-3 font-weight-normal">Connexion :</h1>
+            
+            <!-- Champ de saisie de l'adresse e-mail -->
+            <label for="inputEmail" class="form-label col-12 col-md-3">Email :</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus placeholder="pierre.dupont@gmail.com">
+
+            <!-- Champ de saisie du mot de passe -->
+            <label for="inputPassword" class="form-label col-12 col-md-3">Password :</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="*************">
+
+            <!-- Champ caché pour le jeton CSRF -->
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <ul class="list-unstyled">
+                <li>
+                    <!-- Lien pour la demande de réinitialisation du mot de passe -->
+                    <a href="{{ path('app_forgot_password_request')}}">Mot de passe oublié</a>
+                </li>
+            </ul>
+            
+            <!-- Paragraphe pour inciter l'utilisateur à créer un compte s'il n'en a pas encore -->
+            <p>Vous n'avez pas encore de compte ?<br>Alors <a href="{{ path('app_register')}}">créez vous un compte</a> dès maintenant !</p>
+            
+            <div class="d-flex justify-content-end">
+                <!-- Bouton pour soumettre le formulaire de connexion -->
+                <button class="btn btn-success" type="submit">Se connecter</button>
+            </div>
+        </form>
     </div>
+</div>
+
 {% endblock %}

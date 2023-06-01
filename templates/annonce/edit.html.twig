@@ -8,29 +8,29 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				{{ form_start(form) }}
-				{{ form_row(form.titre) }}
-            	{{ form_row(form.description) }}
-				{{ form_row(form.animal) }}
-				{{ form_row(form.images) }}
+				{{ form_start(form) }} <!-- Début du formulaire pour la modification de l'annonce -->
+				{{ form_row(form.titre) }} <!-- Titre de l'annonce -->
+            	{{ form_row(form.description) }} <!-- Description de l'annonce -->
+				{{ form_row(form.animal) }} <!-- Informations sur l'animal de l'annonce -->
+				{{ form_row(form.images) }} <!-- Téléchargement des images de l'annonce -->
             	<h2>Supprimer des images :</h2>
 					{% for image in annonce.images %}
 						<div>
 							<img class="card-img-top" src="{{ asset('uploads/images/' ~ image.url) }}" alt="Card image" style="width: 100px"><br>
-
-							{# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+							{# Affichage des images actuelles de l'annonce avec un lien pour les supprimer #}
 							<a href="{{ path('app_annonce_delete_image', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a>
 						</div>
 					{% endfor %}
                     <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-danger mx-1" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
+                        <button type="button" class="btn btn-danger mx-1" data-dismiss="modal">Fermer</button> <!-- Bouton de fermeture du modal -->
+                        <button type="submit" class="btn btn-success">Enregistrer les modifications</button> <!-- Bouton pour enregistrer les modifications de l'annonce -->
                     </div>
 				{{ form_end(form)}}
 			</div>
 		</div>
 	</div>
 </div>
+
 {% block javascripts %}
-    <script src="{{ asset('js/images.js') }}"></script>
+    <script src="{{ asset('js/images.js') }}"></script> <!-- Inclusion d'un fichier JavaScript pour la gestion des images -->
 {% endblock %}

@@ -7,19 +7,36 @@
     <div class="d-flex justify-content-center p-4 mt-4 row">
         {{ form_start(registrationForm, {'attr': {'class': 'col-md-8'}} ) }}
             <h1 class="h3 mb-3 font-weight-normal">Inscription :</h1>
-
+            
+                <!-- Champ de saisie du nom -->
                 {{ form_row(registrationForm.Nom) }}
+                
+                <!-- Champ de saisie du prénom -->
                 {{ form_row(registrationForm.Prenom) }}
+                
+                <!-- Champ de saisie du numéro de téléphone -->
                 {{ form_row(registrationForm.Telephone) }}
+                
+                <!-- Champ de saisie de l'adresse -->
                 {{ form_row(registrationForm.Adresse) }}
+                
+                <!-- Champ de saisie de l'adresse e-mail -->
                 {{ form_row(registrationForm.Email) }}
+                
+                <!-- Champ de saisie du mot de passe -->
                 {{ form_row(registrationForm.Password) }}
+                
+                <!-- Case à cocher pour accepter les termes et conditions -->
                 {{ form_row(registrationForm.agreeTerms)}}
             </div>
+            
         <div class="d-flex justify-content-end">
+            <!-- Bouton pour soumettre le formulaire d'inscription -->
             <button class="btn btn-success" type="submit">S'inscrire</button>
         </div>
+        
         {{ form_end(registrationForm) }}
     </div>
 </div>
+
 {% endblock %}

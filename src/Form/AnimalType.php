@@ -39,8 +39,8 @@ class AnimalType extends AbstractType
                     'Mâle' => false,
                     'Femelle' => true,
                 ],
-                'expanded' => true, // Pour afficher des boutons radio à la place de la checkbox
-                'multiple' => false, // Un seul choix est possible
+                'expanded' => true, 
+                'multiple' => false, 
             ])
             ->add('Date_Naissance', DateType::class, [
                 'format' => 'dd MM yyyy',
@@ -68,8 +68,8 @@ class AnimalType extends AbstractType
                     'Oui' => true,
                     'Non' => false,
                 ],
-                'expanded' => true, // Pour afficher des boutons radio à la place de la checkbox
-                'multiple' => false, // Un seul choix est possible
+                'expanded' => true,
+                'multiple' => false, 
             ])
             ->add('vaccin', ChoiceType::class, [
                 'label' => 'Vaccin à jour :',
@@ -77,8 +77,8 @@ class AnimalType extends AbstractType
                     'Oui' => true,
                     'Non' => false,
                 ],
-                'expanded' => true, // Pour afficher des boutons radio à la place de la checkbox
-                'multiple' => false, // Un seul choix est possible
+                'expanded' => true, 
+                'multiple' => false,
             ])
             ->add('puce_tatouage', TextType::class, [
                 'label' => 'Numéro de puce / tatouage :',

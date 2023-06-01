@@ -4,25 +4,35 @@
 
 {% block body %}
 <h1 class="text-center my-3">Accueil :</h1>
+
+<!-- Section de présentation -->
 <div class="container img">
     <div class="col-6 texte">
         <div class="text-center mx-auto">
+            <!-- Message de bienvenue -->
             <p>Bienvenue sur <b>Bête de Rencontre !</b> Le site de mise en relation et d’aide pour la reproduction animale ! Que vous soyez à la recherche d'un partenaire pour votre chien, chat, lapin ou cheval par exemple, nous sommes là pour vous aider.</p>
+            <!-- Description du site -->
             <p>Notre site propose des annonces de reproduction d'éleveurs d'animaux de confiance ou même de particuliers, avec des critères de recherche avancés pour vous aider à trouver l'animal idéal pour votre compagnon.</p>
-            <p>Notre équipe de professionnels est dévouée à assurer la sécurité et la confidentialité de vos informations personnelles tout en offrant une expérience utilisateur agréable et intuitive. Nous travaillons dur pour garantir que toutes les annonces et fiches conseils publiés sur notre site soit précises et respectent les normes de santé et de sécurité pour les animaux.</p>
+            <!-- Engagement de l'équipe -->
+            <p>Notre équipe de professionnels est dévouée à assurer la sécurité et la confidentialité de vos informations personnelles tout en offrant une expérience utilisateur agréable et intuitive. Nous travaillons dur pour garantir que toutes les annonces et fiches conseils publiés sur notre site soient précises et respectent les normes de santé et de sécurité pour les animaux.</p>
+            <!-- Appel à rejoindre la communauté -->
             <p>Rejoignez notre communauté dès maintenant et trouvez le partenaire idéal pour votre animal de compagnie !</p>
         </div>
     </div>
+    <!-- Image -->
     <div class="col-6 d-flex justify-content-center align-items-center">
         <img src="{{ asset('home.jpg') }}" style="width: 80%" alt="Image">
     </div>
 </div>
-<div class="row" style= "text-align: center">
+
+<!-- Section des dernières annonces -->
+<div class="row" style="text-align: center">
     <h1>Dernières annonces postées:</h1>
     {% if annonces is empty %}
+        <!-- Aucune annonce à afficher -->
         <p>Aucune annonce à afficher.</p>
     {% endif %}
-    {% for annonce in annonces %} 
+    {% for annonce in annonces %}
         <div class="card" style="width:300px; margin:8px;">
             <a href="{{path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black; margin-top: 20px;">
                 {% if annonce.images %}
@@ -33,19 +43,23 @@
                     {# Ne pas couper les images (cela les déformes) #}
                     <div class="d-flex justify-content-center">
                         <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image" style="height:200px; width:200px;">
-                    </div> 
-                    
-                {% endif %}    
+                    </div>
+                {% endif %}
                 <div class="card-body d-flex flex-column">
+                    <!-- Titre de l'annonce -->
                     <h4 class="card-title d-flex justify-content-center">{{ annonce.Titre }}</h4>
+                    <!-- Description de l'annonce -->
                     <p class="card-text">{{ annonce.Description }}</p>
                     <div class="mt-auto">
+                        <!-- Date de publication de l'annonce -->
                         <p class="card-text"><small class="text-muted"><strong>Date de publication :</strong> {{ annonce.DatePublication | date('Y-m-d')}}</small></p>
+                        <!-- Date de dernière modification de l'annonce -->
                         <p class="card-text"><small class="text-muted"><strong>Dernière modification :</strong> {{ annonce.DateModification | date('Y-m-d')}}</small></p>
                     </div>
                 </div>
             </a>
         </div>
-    {% endfor %} 
+    {% endfor %}
 </div>
+
 {% endblock %}

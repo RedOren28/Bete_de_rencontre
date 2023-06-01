@@ -13,6 +13,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(AnnonceRepository $repository, Request $request): Response
     {
+        // Récupérer les 12 dernières annonces, triées par date de publication décroissante
         $annonces = $repository->findBy([], ['date_publication' => 'DESC'], 12);
 
         return $this->render('home/index.html.twig', [
