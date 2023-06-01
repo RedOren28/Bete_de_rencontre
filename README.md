@@ -48,11 +48,6 @@ Ainsi, des fiches conseils seront mis à leur disposition afin de s’occuper au
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://www.w3schools.com/css/default.asp)
 [![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 
-[![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://www.microsoft.com/fr-fr/windows?r=1)
-[![Brave](https://img.shields.io/badge/Brave-FB542B?style=for-the-badge&logo=Brave&logoColor=white)](https://brave.com/fr/)
-[![AMD](https://img.shields.io/badge/AMD%20Radeon_RX_5600_XT-ED1C24?style=for-the-badge&logo=amd&logoColor=white)](https://www.amd.com/fr)
-[![Ryzen](https://img.shields.io/badge/AMD%20Ryzen_7_3700X-ED1C24?style=for-the-badge&logo=amd&logoColor=white)](https://www.amd.com/fr)
-
 [![ForTheBadge built-by-developers](http://ForTheBadge.com/images/badges/built-by-developers.svg)](https://GitHub.com/RedOren28/)
 
 #### Mes réseaux :
