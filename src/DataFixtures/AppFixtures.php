@@ -58,6 +58,19 @@ class AppFixtures extends Fixture
 
         $manager->persist($admin);
 
+        // Utilisateur
+        $user = new User;
+        $user->setEmail('user@gmail.com');
+        $user->setNom($faker->lastName());
+        $user->setPrenom($faker->firstName());
+        $user->setAdresse($faker->streetAddress());
+        $user->setTelephone($faker->phoneNumber());
+
+        $password = $this->hasher->hashPassword($user, 'user');
+        $user->setPassword($password);
+
+        $manager->persist($user);
+
         // Couleur
         foreach ($couleurs as $couleur) {
             $uneCouleur = new Couleur();

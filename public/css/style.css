@@ -59,7 +59,7 @@ select {
     display: block;
 }
 
-form{
+form , .annonce{
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     background-color: rgba(5, 95, 53, 0.2);

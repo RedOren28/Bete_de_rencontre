@@ -50,23 +50,31 @@
         	<p>Aucune annonce à afficher.</p>
     		{% else %}
 			<ul class="list-unstyled">
-        		{% for annonce in annonces %}
-            	<li>
-                	<div class="card" style="width:300px; margin:8px; text-align: center">
-                    	<a href="{{path('app_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black">
-                        	<h2 class="card-title">{{ annonce.titre }}</h2>
+        		{% for annonce in annonces %} 
+					<div class="card" style="width:300px; margin:8px;">
+						<a href="{{path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black; margin-top: 20px;">
 							{% if annonce.images %}
-								<div style="height:200px; overflow-y:hidden">
+								{# Couper les images #}
+								{# <div style="height:200px; overflow-y:hidden">
 									<img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image">
+								</div> #}
+								{# Ne pas couper les images (cela les déformes) #}
+								<div class="d-flex justify-content-center">
+									<img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image" style="height:200px; width:200px;">
+								</div> 
+								
+							{% endif %}    
+							<div class="card-body d-flex flex-column">
+								<h4 class="card-title d-flex justify-content-center">{{ annonce.Titre }}</h4>
+								<p class="card-text">{{ annonce.Description }}</p>
+								<div class="mt-auto">
+									<p class="card-text"><strong>Date de publication :</strong> {{ annonce.DatePublication | date('Y-m-d')}}</small></p>
+									<p class="card-text"><strong>Dernière modification :</strong> {{ annonce.DateModification | date('Y-m-d')}}</small></p>
 								</div>
-							{% endif %}
-                        	<p class="card-text">{{ annonce.description }}</p>
-                        	<p class="card-text"><strong>Date de publication:</strong> {{ annonce.DatePublication | date('Y-m-d')}}</p>
-                        	<p class="card-text"><strong>Dernière Modification:</strong> {{ annonce.DateModification | date('Y-m-d')}}</p>
-                    	</a>
-                	</div>
-            	</li>
-        		{% endfor %}
+							</div>
+						</a>
+					</div>
+				{% endfor %} 
         	</ul>
     		{% endif %}
 			<div class="d-flex justify-content-center">
