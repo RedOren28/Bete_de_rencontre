@@ -25,7 +25,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AnnonceController extends AbstractController
 {
     #[Route('/annonce', name: 'app_annonce')]
-    public function index(AnnonceRepository $repository, Request $request): Response
+    public function index(AnnonceRepository $repository, UserRepository $userRepo, Request $request): Response
     {
         $data = new SearchData();
         $form = $this->createForm(SearchType::class, $data);

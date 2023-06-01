@@ -4,10 +4,11 @@
 
 {% block body %}
     <div class="container">
-        <div class="row" style="">
+        <div class="row">
          <h1>Annonces :</h1>
             <div class="col-md-3 ml-auto">
                 {{form_start(form, {attr: {class: 'filter'}})}}
+                <h3 style="text-align:center"><u>Filtres :</u></h3><br>
                     <h4>Titre :</h4>
                     {{form_row(form.q)}}
                     <h4>Sexe :</h4>

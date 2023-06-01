@@ -6,56 +6,98 @@
 
 {% include 'annonce/edit.html.twig' %}
 
-<div class="row" style= "text-align: center">
-    <h1>Annonce {{annonce.Titre}} :</h1>
-    <div>
-        <div class="card-body">
-            <p class="card-text">{{annonce.Description}}</p>
-        </div>
-    </div>
-    <div>
-        {% for image in annonce.images %}
-            <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.url) }}" alt="Card image" style="width: 250px">
-        {% endfor %}
-    </div>
+<h1  class="text-center my-3"><u>{{annonce.Titre}} :</u></h1>
+<div class="text-center mx-auto" style="font-size: 20px;">
+    <p>{{annonce.Description}}</p>
 </div>
-<div class="row">
-    <h2>Animal {{annonce.animal.nom}} :</h2>
-    <div class="card-body">
-        <p class="card-text">Sexe : {{annonce.animal.sexe ? "Femelle" : "Mâle"}}</p>
-        <p class="card-text">Espèce : {{annonce.animal.espece.nom}}</p>
-        <p class="card-text">Race : {{annonce.animal.race.nom}}</p>
-        <p class="card-text">Régime Alimentaire : {{annonce.animal.regime.nom}}</p>
-
-        {% if annonce.animal.alimentation|length > 0 %}
-            <p class="card-text">Alimentation(s) :</p>
-            <ul>
-                {% for alimentation in annonce.animal.alimentation %}
-                    <li>{{ alimentation.nom }}</li>
-                {% endfor %}
+<div class="container img annonce">
+    <div class="col-6 texte">
+        <div class="text-center mx-auto">
+            {# {% for image in annonce.images %} #}
+                <div class="col-md-12 d-flex justify-content-center align-items-center">
+                    <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image" style="height: 400px; width: 400px; padding: 10px;">
+                </div>
+            {# {% endfor %} #}
+            <ul class="list-unstyled">
+                <li>
+                    <h3 class="h3 mb-3 font-weight-normal"><u>Me Contacter :</u></h3>
+                </li>
+                <li><br>
+                    <strong>Adresse :</strong>
+                    {{app.user.Adresse}}
+                </li>
+                <li><br>
+                    <strong>N° de téléphone :</strong>
+                    {{ app.user.getTelephone() }}
+                </li>
+                <li><br>
+                    <strong>Adresse Mail :</strong>
+                    {{app.user.email }}
+                </li>
             </ul>
-        {% else %}
-            <p class="card-text">Aucune alimentation renseignée pour cet animal</p>
+            {% if app.user and app.user.id == annonce.user.id %}
+            <div class="col-12 d-flex justify-content-end">
+                <button type="button" class="btn btn-success mx-1" data-toggle="modal" data-target="#editAnnonceModal">
+                    {{ 'Modifier'|trans }}
+                </button>
+                <button type="button" class="btn btn-danger" onclick="deleteAnnonce({{ annonce.id }})">
+                    Supprimer
+                </button>
+            </div>
         {% endif %}
-
-        <p class="card-text">Date de Naissance : {{ annonce.animal.DateNaissance | date('d/m/Y') }}</p>
-        <p class="card-text">Couleur : {{annonce.animal.couleur.nom}}</p>
-        <p class="card-text">Poil : {{annonce.animal.poil.type}}</p>
-        <p class="card-text">Vermifugation à jour : {{annonce.animal.vermifugation ? "Oui" : "Non"}}</p>
-        <p class="card-text">Vaccin à jour :    {{annonce.animal.vaccin ? "Oui" : "Non"}}</p>
-        <p class="card-text">N° puce / tatouage :   {{annonce.animal.pucetatouage}}</p>
-    </div> 
-</div>
-<div>
-    {% if app.user and app.user.id == annonce.user.id %}
-        <div class="d-flex justify-content-end">				
-            <button type="button" class="btn btn-success mx-1" data-toggle="modal" data-target="#editAnnonceModal">
-                {{ 'Modifier'|trans }}
-            </button>
-            <form action="{{ path('app_annonce_delete', {'id': annonce.id}) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette annonce ?')">
-                <button type="submit" class="btn btn-danger">Supprimer</button>
-            </form>
         </div>
-    {% endif %}
+    </div>
+    <div class="col-6 d-flex justify-content-center align-items-center">
+        <div>
+            <h4><strong>Prénom : </strong>{{annonce.animal.nom}}</h4><br>
+            <p><strong>Date de Naissance : </strong>{{ annonce.animal.DateNaissance | date('d/m/Y') }}</p>
+            <p><strong>Sexe : </strong>{{annonce.animal.sexe ? "Femelle" : "Mâle"}}</p>
+            <p><strong>Espèce : </strong>{{annonce.animal.espece.nom}}</p>
+            <p><strong>Race : </strong>{{annonce.animal.race.nom}}</p>
+            <p><strong>Régime Alimentaire : </strong>{{annonce.animal.regime.nom}}</p>
+            {% if annonce.animal.alimentation|length > 0 %}
+                <p><strong>Alimentation(s) :</strong></p>
+                <ul class="list-unstyled">
+                    {% for alimentation in annonce.animal.alimentation %}
+                        <li class="card" style="margin: 5px; padding: 5px;">{{ alimentation.nom }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Aucune alimentation renseignée pour cet animal</p>
+            {% endif %}
+            <p><strong>Couleur : </strong>{{annonce.animal.couleur.nom}}</p>
+            <p><strong>Poil : </strong>{{annonce.animal.poil.type}}</strong></p>
+            <p><strong>Vermifugation à jour : </strong>{{annonce.animal.vermifugation ? "Oui" : "Non"}}</p>
+            <p><strong>Vaccin à jour : </strong>{{annonce.animal.vaccin ? "Oui" : "Non"}}</p>
+            <p><strong>N° puce / tatouage : </strong>{{annonce.animal.pucetatouage}}</p>
+        </div>
+        
+    </div>
 </div>
+
+<script>
+    function deleteAnnonce(annonceId) {
+        if (confirm('Voulez-vous vraiment supprimer cette annonce ?')) {
+            // Effectuer une requête Ajax pour supprimer l'annonce
+            fetch('{{ path('app_annonce_delete', {'id': annonce.id}) }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Si la suppression réussit, recharger la page ou effectuer une autre action
+                    location.reload();
+                } else {
+                    // Gérer les erreurs de suppression
+                    console.error('Erreur lors de la suppression de l\'annonce');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la suppression de l\'annonce', error);
+            });
+        }
+    }
+</script>
 {% endblock %}
