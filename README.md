@@ -30,6 +30,7 @@ Git Clone le projet avec la commande => `git clone https://github.com/RedOren28/
 Se placer dans le dossier créer puis lancer les différentes commandes suivantes:
 - `composer install`
 - Modifier le chemin de votre database dans le fichier .env du projet et éxécuter la commande : `symfony console doctrine:database:create`
+- `symfony console doctrine:migrations:migrate`
 - `symfony console doctrine:fixtures:load`
 
 ## Fonctionnalités du site
