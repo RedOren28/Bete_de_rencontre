@@ -3,14 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Poil;
+use App\Entity\Race;
 use App\Entity\Image;
+use App\Entity\Espece;
 use App\Entity\Regime;
 use App\Entity\Annonce;
 use App\Entity\Couleur;
-use App\Entity\Alimentation;
-use App\Entity\Espece;
-use App\Entity\Race;
+use App\Data\SearchData;
+use App\Form\SearchType;
 use App\Form\AnnonceType;
+use App\Entity\Alimentation;
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,10 +27,14 @@ class AnnonceController extends AbstractController
     #[Route('/annonce', name: 'app_annonce')]
     public function index(AnnonceRepository $repository, Request $request): Response
     {
-        $annonces = $repository->findAll();
+        $data = new SearchData();
+        $form = $this->createForm(SearchType::class, $data);
+        $form->handleRequest($request);
+        $annonces = $repository->findSearch($data);
 
         return $this->render('annonce/index.html.twig', [
             'annonces' => $annonces,
+            'form' => $form->createView(),
         ]);
     }
 

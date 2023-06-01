@@ -10,6 +10,9 @@ use App\Entity\Espece;
 use App\Entity\Regime;
 use App\Entity\Couleur;
 use App\Entity\Alimentation;
+use App\Entity\Annonce;
+use App\Entity\Animal;
+use App\Entity\Image;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -17,9 +20,11 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class AppFixtures extends Fixture
 {
     private UserPasswordHasherInterface $hasher;
+
     public function __construct(UserPasswordHasherInterface $hasher)
     {
         $this->hasher = $hasher;
+
     }
 
     public function load(ObjectManager $manager): void
@@ -174,7 +179,7 @@ class AppFixtures extends Fixture
         }
 
         // Espèce Rongeur
-        $Rongeur= new Espece();
+        $Rongeur = new Espece();
         $Rongeur->setNom('Rongeur');
 
         // Race Rongeur
@@ -185,6 +190,79 @@ class AppFixtures extends Fixture
 
             $manager->persist($unRongeur);
         }
+
+        $manager->flush();
+
+        // Annonces
+        $annonce = new Annonce();
+        $annonce->setTitre('Reproduction berger australien');
+        $annonce->setDescription('Bonjour, je cherche à faire reproduire ma jeune chienne de 2 ans avec un autre berger autralien.');
+        $annonce->setDatePublication(new \DateTime);
+        $annonce->setDateModification(new \DateTime);
+
+        //Utilisateur
+        $annonce->setUser($admin);
+
+        //Image
+        $image = new Image();
+        $image->setUrl('chien.png');
+
+        //Animal
+        $animal = new Animal();
+        $animal->setNom('Natsu');
+        $animal->setSexe(1);
+        $animal->setVermifugation(1);
+        $animal->setVaccin(1);
+        $animal->setPuceTatouage('2544654');
+        $animal->setDateNaissance(new \DateTime);
+
+        //Poil
+        $randp = array_rand($poils, 2);
+        $p = $poils[$randp[0]];
+        $poil = $manager->getRepository(Poil::class)->findOneBy(['type' => $p]);
+        
+        //Couleur
+        $randc = array_rand($couleurs, 2);
+        $c = $couleurs[$randc[0]];
+        $couleur = $manager->getRepository(Couleur::class)->findOneBy(['nom' => $c]);
+
+        //Régime
+        $regime = $manager->getRepository(Regime::class)->findOneBy(['nom' => 'Omnivore']);
+
+        //Alimentation
+        $randa = array_rand($omnivore, 2);
+        $alimentations = [];
+        foreach ($randa as $index) {
+            $alimentation = $manager->getRepository(Alimentation::class)->findOneBy(['nom' => $omnivore[$index]]);
+            if ($alimentation) {
+                $alimentations[] = $alimentation;
+            }
+        }
+
+        //Espece
+        $espece = $manager->getRepository(Espece::class)->findOneBy(['nom' => 'Chien']);
+
+        //Race
+        $randr = array_rand($chiens, 2);
+        $ra = $chiens[$randr[0]];
+        $race = $manager->getRepository(Race::class)->findOneBy(['nom' => $ra]);
+
+        //Affectation des données à l'animal
+        $animal->setPoil($poil);
+        $animal->setCouleur($couleur);
+        $animal->setRegime($regime);
+        $animal->setEspece($espece);
+        $animal->setRace($race);
+
+        foreach ($alimentations as $alimentation) {
+            $alimentation->addAnimal($animal);
+        }
+        
+        //Affectation de l'animal à l'annonce
+        $annonce->setAnimal($animal);
+        $annonce->addImage($image);
+
+        $manager->persist($annonce);
 
         $manager->flush();
     }

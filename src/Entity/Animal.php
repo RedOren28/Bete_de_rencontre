@@ -52,10 +52,10 @@ class Animal
     #[ORM\ManyToMany(targetEntity: Alimentation::class, inversedBy: 'animals')]
     private Collection $alimentation;
 
-    #[ORM\ManyToOne(inversedBy: 'animals')]
+    #[ORM\ManyToOne(inversedBy: 'animals',cascade:["persist"])]
     private ?Espece $Espece = null;
 
-    #[ORM\ManyToOne(inversedBy: 'animals')]
+    #[ORM\ManyToOne(inversedBy: 'animals',cascade:["persist"])]
     private ?Race $Race = null;
 
     public function __construct()

@@ -21,7 +21,7 @@ class Regime
     #[ORM\OneToMany(mappedBy: 'Regime', targetEntity: Animal::class)]
     private Collection $animals;
 
-    #[ORM\ManyToMany(targetEntity: Alimentation::class, inversedBy: 'regimes')]
+    #[ORM\ManyToMany(targetEntity: Alimentation::class, inversedBy: 'regimes', cascade:["persist"])]
     private Collection $alimentations;
 
     public function __construct()
@@ -99,5 +99,10 @@ class Regime
         $this->alimentations->removeElement($alimentation);
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 }

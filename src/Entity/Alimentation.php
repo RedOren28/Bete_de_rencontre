@@ -24,7 +24,7 @@ class Alimentation
     #[ORM\ManyToMany(targetEntity: Regime::class, mappedBy: 'alimentations', cascade: ["persist"])]
     private Collection $regimes;
 
-    #[ORM\ManyToMany(targetEntity: Animal::class, mappedBy: 'alimentations')]
+    #[ORM\ManyToMany(targetEntity: Animal::class, mappedBy: 'alimentation')]
     private Collection $animals;
 
     public function __construct()
