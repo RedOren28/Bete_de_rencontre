@@ -1,22 +1,33 @@
 <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <!-- Fenêtre modale -->
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
+			<!-- En-tête de la fenêtre modale -->
 			<div class="modal-header">
 				<h5 class="modal-title" id="editProfileModalLabel">Modifier mon profil</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
+			<!-- Corps de la fenêtre modale -->
 			<div class="modal-body">
 				<form>
 					{{ form_start(form) }}
+                    <!-- Champ de saisie pour le nom -->
 					{{ form_row(form.Nom) }}
+                    <!-- Champ de saisie pour le prénom -->
 					{{ form_row(form.Prenom) }}
+                    <!-- Champ de saisie pour le téléphone -->
 					{{ form_row(form.Telephone) }}
+                    <!-- Champ de saisie pour l'adresse -->
 					{{ form_row(form.Adresse) }}
+                    <!-- Champ de saisie pour l'e-mail -->
 					{{ form_row(form.Email) }}
+                    <!-- Boutons de la fenêtre modale -->
                     <div class="d-flex justify-content-end">
+                        <!-- Bouton de fermeture -->
                         <button type="button" class="btn btn-danger mx-1" data-dismiss="modal">Fermer</button>
+                        <!-- Bouton de soumission du formulaire -->
                         <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
                     </div>
 				</form>

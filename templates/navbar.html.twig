@@ -1,11 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 rounded">
+    <!-- Logo -->
     <a href="{{path('app_home')}}"><img src="{{ asset('logo.jpg') }}" class="navbar-logo" style="height:50px"></a>
+    
+    <!-- Titre du site -->
     <a class="navbar-brand mr-auto" href="{{path('app_home')}}">Bête de Rencontre</a>
+    
+    <!-- Bouton de bascule pour la navigation mobile -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- Contenu de la barre de navigation -->
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        <!-- Liste des liens de navigation -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link col align-middle link" href="{{ path('app_annonce')}}">Annonces</a>
@@ -17,11 +24,16 @@
                 <a class="nav-link col align-middle link" href="{{ path('app_advices')}}">Fiches Conseils</a>
             </li>
         </ul>
+        
+        <!-- Contenu à droite de la barre de navigation -->
         <div class="my-2 my-lg-0">
+            <!-- Vérifie si l'utilisateur est connecté -->
             {% if app.user == null %}
+                <!-- Liens d'inscription et de connexion -->
                 <a class="btn btn-success" href="{{path('app_register')}}">S'inscrire</a>
                 <a class="btn btn-success" href="{{ path('app_login')}}">Se connecter</a>
             {% else %}
+                <!-- Liste des liens pour un utilisateur connecté -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link col align-middle link" href="{{ path('app_mes_annonces')}}">Mes annonces</a>
@@ -29,11 +41,15 @@
                     <li class="nav-item active">
                         <a class="nav-link col align-middle link" href="{{ path('app_profile')}}">Profil</a>
                     </li>
+                    
+                    <!-- Vérifie si l'utilisateur est un administrateur -->
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
                             <a class="nav-link col align-middle link" href="{{ path('admin') }}">Admin</a>
                         </li>
                     {% endif %}
+                    
+                    <!-- Bouton de déconnexion -->
                     <li>
                         <a class="btn btn-outline-success" href="{{path('app_logout')}}">Se déconnecter</a>
                     </li>

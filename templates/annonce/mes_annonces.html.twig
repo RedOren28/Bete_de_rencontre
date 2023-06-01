@@ -4,30 +4,34 @@
 
 {% block body %}
 
-<div class="row" style= "text-align: center">
+<div class="row" style="text-align: center">
     <h1>Mes annonces :</h1>
     {% if annonces is empty %}
+        <!-- Aucune annonce à afficher -->
         <h1>Aucune annonce à afficher.</h1>
     {% endif %}
-    {% for annonce in annonces %} 
+    {% for annonce in annonces %}
         <div class="card" style="width:300px; margin:8px;">
-            <a href="{{path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black; margin-top: 20px;">
+            <a href="{{ path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black; margin-top: 20px;">
                 {% if annonce.images %}
-                    {# Couper les images #}
-                    {# <div style="height:200px; overflow-y:hidden">
-                        <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image">
-                    </div> #}
-                    {# Ne pas couper les images (cela les déformes) #}
-                    <div class="d-flex justify-content-center">
-                        <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image" style="height:200px; width:200px;">
-                    </div> 
-                    
-                {% endif %}    
+                <!-- Couper les images -->
+                <!-- <div style="height:200px; overflow-y:hidden">
+                    <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image">
+                </div> -->
+                <!-- Ne pas couper les images (cela les déforme) -->
+                <div class="d-flex justify-content-center">
+                    <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image" style="height:200px; width:200px;">
+                </div>
+                {% endif %}
                 <div class="card-body d-flex flex-column">
+                    <!-- Titre de l'annonce -->
                     <h4 class="card-title d-flex justify-content-center">{{ annonce.Titre }}</h4>
+                    <!-- Description de l'annonce -->
                     <p class="card-text">{{ annonce.Description }}</p>
                     <div class="mt-auto">
+                        <!-- Date de publication de l'annonce -->
                         <p class="card-text"><small class="text-muted"><strong>Date de publication :</strong> {{ annonce.DatePublication | date('Y-m-d')}}</small></p>
+                        <!-- Date de dernière modification de l'annonce -->
                         <p class="card-text"><small class="text-muted"><strong>Dernière modification :</strong> {{ annonce.DateModification | date('Y-m-d')}}</small></p>
                     </div>
                 </div>
@@ -35,5 +39,6 @@
         </div>
     {% endfor %}
 </div>
+
 
 {% endblock %}

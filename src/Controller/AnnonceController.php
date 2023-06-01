@@ -27,9 +27,13 @@ class AnnonceController extends AbstractController
     #[Route('/annonce', name: 'app_annonce')]
     public function index(AnnonceRepository $repository, UserRepository $userRepo, Request $request): Response
     {
+        // Crée une nouvelle instance de la classe SearchData
         $data = new SearchData();
+        // Crée le formulaire en utilisant la classe SearchType et l'instance $data
         $form = $this->createForm(SearchType::class, $data);
+        // Gère la soumission du formulaire
         $form->handleRequest($request);
+        // Appelle la méthode findSearch du repository pour récupérer les annonces correspondant aux critères de recherche
         $annonces = $repository->findSearch($data);
 
         return $this->render('annonce/index.html.twig', [
@@ -41,24 +45,26 @@ class AnnonceController extends AbstractController
     #[Route('/regime/fetch/{regime}', name: 'app_annonce_fetch_regime')]
     public function fetchByRegime(string $regime = "" , EntityManagerInterface $entityManager, SerializerInterface $serializer):Response
     {
-
+        // Recherche le régime correspondant à l'identifiant fourni
         $regime = $entityManager->getRepository(Regime::class)->find($regime);
 
-        // Ajouter cet appel pour récupérer les alimentations associées au régime sélectionné
+        // Récupère les alimentations associées au régime sélectionné
         $alimentations = $entityManager->getRepository(Alimentation::class)->findByRegime($regime);
         
+        // Retourne les alimentations au format JSON
         return new JsonResponse($serializer->serialize($alimentations, 'json', ['groups' => ['list_alimentations']]));
     }
 
     #[Route('/espece/fetch/{espece}', name: 'app_annonce_fetch_espece')]
     public function fetchByEspece(string $espece = "" , EntityManagerInterface $entityManager, SerializerInterface $serializer):Response
     {
-
+        // Recherche l'espèce correspondant à l'identifiant fourni
         $espece = $entityManager->getRepository(Espece::class)->find($espece);
 
-        // Ajouter cet appel pour récupérer la race associée ç l'espèce sélectionnée
+        // Récupère la race associée à l'espèce sélectionnée
         $races = $entityManager->getRepository(Race::class)->findByEspece($espece);
         
+        // Retourne les races au format JSON
         return new JsonResponse($serializer->serialize($races, 'json', ['groups' => ['list_races']]));
     }
 
@@ -71,40 +77,48 @@ class AnnonceController extends AbstractController
             return $this->redirectToRoute('app_login', ['redirected' => true]);
         }
 
+        // Crée une nouvelle instance de la classe Annonce
         $annonce = new Annonce();
+        // Crée le formulaire en utilisant la classe AnnonceType et l'instance $annonce
         $form = $this->createForm(AnnonceType::class, $annonce);
+        // Gère la soumission du formulaire
         $form->handleRequest($request);
 
+        // Vérifie si le formulaire a été soumis et est valide
         if ($form->isSubmitted() && $form->isValid()) {
+            // Définit la date de publication et de modification de l'annonce comme la date et l'heure actuelles
             $annonce->setDatePublication(new \DateTime());
             $annonce->setDateModification(new \DateTime());
+            // Associe l'utilisateur actuellement connecté à l'annonce
             $annonce->setUser($this->getUser());
 
+            // Récupère l'animal sélectionné dans le formulaire
             $animal = $form->get('animal')->getData();
             $annonce->setAnimal($animal);
 
-            // On récupère les images transmises
+            // Récupère les images transmises dans le formulaire
             $images = $form->get('images')->getData();
             foreach ($images as $image) {
-                // On génère un nouveau nom de fichier
+                // Génère un nouveau nom de fichier pour chaque image
                 $url = $image->getClientOriginalName();
-                // On copie le fichier dans le dossier uploads
+                // Déplace le fichier dans le dossier des images
                 $image->move(
                     $this->getParameter('images_directory'),
                     $url
                 );
 
-                // Créer une nouvelle instance de l'entité Image
+                // Crée une nouvelle instance de l'entité Image
                 $newImage = new Image();
                 $newImage->setUrl($url);
 
-                // Persistez explicitement chaque entité Image
+                // Persiste explicitement chaque entité Image
                 $entityManager->persist($newImage);
 
-                // Ajouter l'image à la collection d'images de l'annonce
+                // Ajoute l'image à la collection d'images de l'annonce
                 $annonce->addImage($newImage);
             }
 
+            // Persiste l'annonce dans la base de données
             $entityManager->persist($annonce);
             $entityManager->flush();
 
@@ -120,21 +134,22 @@ class AnnonceController extends AbstractController
     public function deleteImage(Image $image, Request $request, EntityManagerInterface $entityManager): Response
     {
         $data = json_decode($request->getContent(), true);
-    
-        // On vérifie si le token est valide
+
+        // Vérifie si le jeton CSRF est valide
         if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])){
-            // On récupère le nom de l'image
+            // Récupère le nom de l'image
             $nom = $image->getUrl();
-            // On supprime le fichier
+            // Supprime le fichier correspondant à l'image
             unlink($this->getParameter('images_directory').'/'.$nom);
-    
-            // On supprime l'entrée de la base
+
+            // Supprime l'entrée de l'image de la base de données
             $entityManager->remove($image);
             $entityManager->flush();
-    
-            // On répond en json
+
+            // Retourne une réponse JSON indiquant la réussite de l'opération
             return new JsonResponse(['success' => 1]);
         }else{
+            // Retourne une réponse JSON avec une erreur et un code de statut 400 (Bad Request)
             return new JsonResponse(['error' => 'Token Invalide'], 400);
         }
     }
@@ -142,13 +157,18 @@ class AnnonceController extends AbstractController
     #[Route('/annonce/read/id/{id}', name: 'app_read_annonce')]
     public function index_id(Annonce $annonce, AnnonceRepository $repository, Request $request, EntityManagerInterface $entityManager): Response
     {
+        // Crée le formulaire en utilisant la classe AnnonceType et l'instance $annonce
         $form = $this->createForm(AnnonceType::class, $annonce);
+        // Gère la soumission du formulaire
         $form->handleRequest($request);
 
+        // Vérifie si le formulaire a été soumis et est valide
         if ($form->isSubmitted() && $form->isValid()) {
+            // Persiste les changements dans la base de données
             $entityManager->flush();
             $id = $annonce->getId();
 
+            // Récupère les nouvelles images transmises dans le formulaire
             $images = $form->get('images')->getData();
             foreach ($images as $image) {
                 $url = $image->getClientOriginalName();
@@ -157,14 +177,14 @@ class AnnonceController extends AbstractController
                     $url
                 );
                 
-                // Créer une nouvelle instance de l'entité Image
+                // Crée une nouvelle instance de l'entité Image
                 $newImage = new Image();
                 $newImage->setUrl($url);
 
-                // Persistez explicitement chaque entité Image
+                // Persiste explicitement chaque entité Image
                 $entityManager->persist($newImage);
                 
-                // Ajouter l'image à la collection d'images de l'annonce
+                // Ajoute l'image à la collection d'images de l'annonce
                 $annonce->addImage($newImage);
             }
             // Si aucune nouvelle image n'a été téléchargée, ne pas ajouter d'images supplémentaires
@@ -186,6 +206,7 @@ class AnnonceController extends AbstractController
     #[Route('/annonce/{id}/delete', name: 'app_annonce_delete')]
     public function deleteAnnonce(Annonce $annonce, EntityManagerInterface $entityManager): Response
     {
+        // Supprime l'annonce de la base de données
         $entityManager->remove($annonce);
         $entityManager->flush();
 
@@ -195,10 +216,13 @@ class AnnonceController extends AbstractController
     #[Route('/annonce/{id}/edit', name: 'app_annonce_edit')]
     public function editAnnonce(Request $request, Annonce $annonce, EntityManagerInterface $entityManager): Response
     {
+        // Crée le formulaire en utilisant la classe AnnonceType et l'instance $annonce
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
- 
+
+        // Vérifie si le formulaire a été soumis et est valide
         if ($form->isSubmitted() && $form->isValid()) {
+            // Persiste les changements dans la base de données
             $entityManager->flush();
 
             return $this->redirectToRoute('app_annonce', ['id' => $annonce->getId()]);
@@ -212,6 +236,7 @@ class AnnonceController extends AbstractController
     #[Route('/annonce/mes_annonces', name: 'app_mes_annonces')]
     public function mesAnnonces(AnnonceRepository $repository, Request $request): Response
     {
+        // Récupère toutes les annonces associées à l'utilisateur connecté
         $annonces = $repository->findBy(['user' => $this->getUser()]);
 
         return $this->render('annonce/mes_annonces.html.twig', [
@@ -222,9 +247,12 @@ class AnnonceController extends AbstractController
     #[Route('/annonce/alimentations/{id}', name: 'app_annonce_alimentations', methods: ['GET'])]
     public function getAlimentationsByRegime(Regime $regime): JsonResponse
     {
+        // Récupère toutes les alimentations associées au régime spécifié
         $alimentations = $regime->getAlimentations()->toArray();
-    
+
+        // Retourne une réponse JSON contenant les alimentations
         return new JsonResponse($alimentations);
     }
+
 }
 

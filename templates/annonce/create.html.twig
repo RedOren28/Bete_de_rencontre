@@ -1,36 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonce{% endblock %}
+{% block title %}Nouvelle Annonce{% endblock %}
 
 {% block body %}
 <div class="container">
     <div class="d-flex justify-content-center p-4 mt-4">
         {{ form_start(form, {'attr': {'class': 'col-5', 'id': 'annonce'}} ) }}
             <h1 class="h3 mb-3 font-weight-normal">Créer une annonce :</h1>
-            {{ form_row(form.titre) }}
-            {{ form_row(form.description) }}
+            {{ form_row(form.titre) }} <!-- Titre de l'annonce -->
+            {{ form_row(form.description) }} <!-- Description de l'annonce -->
            
            <h3 class="h3 mb-3 font-weight-normal">Animal :</h3>
-            {{ form_row(form.animal.nom) }}
-            {{ form_row(form.animal.sexe) }}
-            {{ form_row(form.animal.Date_Naissance) }}
-            {{ form_row(form.animal.regime) }}
-            {{ form_row(form.animal.alimentation) }}
-            {{ form_row(form.animal.espece) }}
-            {{ form_row(form.animal.race) }}
-            {{ form_row(form.animal.couleur) }}
-            {{ form_row(form.animal.poil) }}
-            {{ form_row(form.animal.vermifugation) }}
-            {{ form_row(form.animal.vaccin) }}
-            {{ form_row(form.animal.puce_tatouage) }}
+            {{ form_row(form.animal.nom) }} <!-- Nom de l'animal -->
+            {{ form_row(form.animal.sexe) }} <!-- Sexe de l'animal -->
+            {{ form_row(form.animal.Date_Naissance) }} <!-- Date de naissance de l'animal -->
+            {{ form_row(form.animal.regime) }} <!-- Régime alimentaire de l'animal -->
+            {{ form_row(form.animal.alimentation) }} <!-- Alimentation de l'animal -->
+            {{ form_row(form.animal.espece) }} <!-- Espèce de l'animal -->
+            {{ form_row(form.animal.race) }} <!-- Race de l'animal -->
+            {{ form_row(form.animal.couleur) }} <!-- Couleur de l'animal -->
+            {{ form_row(form.animal.poil) }} <!-- Type de poil de l'animal -->
+            {{ form_row(form.animal.vermifugation) }} <!-- Vermifugation de l'animal -->
+            {{ form_row(form.animal.vaccin) }} <!-- Vaccination de l'animal -->
+            {{ form_row(form.animal.puce_tatouage) }} <!-- Puce ou le tatouage de l'animal -->
 
             <h3 class="h3 mb-3 font-weight-normal">Images :</h3>
-            {{ form_row(form.images) }}
+            {{ form_row(form.images) }} <!-- Téléchargement des images de l'annonce -->
 
             <div class="d-flex justify-content-end">
-                <button class="btn btn-success" type="submit">Créer une annonce</button>
+                <button class="btn btn-success" type="submit">Créer une annonce</button> <!-- Bouton de soumission du formulaire -->
             </div>
         {{ form_end(form) }}
     </div>
 </div>
+
 {% endblock %}

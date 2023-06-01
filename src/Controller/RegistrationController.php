@@ -34,13 +34,15 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+            // faire autre chose si nécessaire, comme envoyer un email
 
+            // Authentifier l'utilisateur et le rediriger vers la page d'accueil
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
                 $request
             );
+            // Rediriger l'utilisateur vers la page d'accueil
             return $this->redirectToRoute('app_home');
         }
 

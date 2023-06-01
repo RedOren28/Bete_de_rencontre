@@ -3,67 +3,92 @@
 {% block title %}Annonces{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-         <h1>Annonces :</h1>
-            <div class="col-md-3 ml-auto">
-                {{form_start(form, {attr: {class: 'filter'}})}}
-                <h3 style="text-align:center"><u>Filtres :</u></h3><br>
-                    <h4>Titre :</h4>
-                    {{form_row(form.q)}}
-                    <h4>Sexe :</h4>
-                    {{form_row(form.sexes)}}
-                    <h4>Vaccin :</h4>
-                    {{form_row(form.vaccins)}}
-                     <h4>Vermifugation :</h4>
-                    {{form_row(form.vermifugations)}}
-                    <h4>Espece :</h4>
-                    {{form_row(form.especes)}}
-                    <h4>Race :</h4>
-                    {{form_row(form.races)}}
-                    <h4>Type de poil :</h4>
-                    {{form_row(form.poils)}}
-                    <h4>Couleur :</h4>
-                    {{form_row(form.couleurs)}}
-                    <h4>Regime :</h4>
-                    {{form_row(form.regimes)}}
-                    <button type="submit" class="btn btn-success w-100">Filtrer</button>
-                {{form_end(form)}}
-            </div>
-            <div class="col-md-9">
-                {% if annonces is empty %}
-                    <h1>Aucune annonce à afficher.</h1>
-                {% else %}
-                    <div class="row">
-                        {% for annonce in annonces %} 
-                            <div class="card" style="width:300px; margin:8px;">
-                                <a href="{{path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black; margin-top: 20px;">
-                                    {% if annonce.images %}
-                                        {# Couper les images #}
-                                        {# <div style="height:200px; overflow-y:hidden">
-                                            <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image">
-                                        </div> #}
-                                        {# Ne pas couper les images (cela les déformes) #}
-                                        <div class="d-flex justify-content-center">
-                                            <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image" style="height:200px; width:200px;">
-                                        </div> 
-                                        
-                                    {% endif %}    
-                                    <div class="card-body d-flex flex-column">
-                                        <h4 class="card-title d-flex justify-content-center">{{ annonce.Titre }}</h4>
-                                        <p class="card-text">{{ annonce.Description }}</p>
-                                        <div class="mt-auto">
-                                            <p class="card-text"><small class="text-muted"><strong>Date de publication :</strong> {{ annonce.DatePublication | date('Y-m-d')}}</small></p>
-                                            <p class="card-text"><small class="text-muted"><strong>Dernière modification :</strong> {{ annonce.DateModification | date('Y-m-d')}}</small></p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        {% endfor %} 
-                    </div>
-                {% endif %} 
-            </div>  
+<div class="container">
+    <div class="row">
+        <h1>Annonces :</h1>
+        <div class="col-md-3 ml-auto">
+            {{ form_start(form, {attr: {class: 'filter'}}) }}
+            <h3 style="text-align:center"><u>Filtres :</u></h3><br>
+            
+            <!-- Titre -->
+            <h4>Titre :</h4>
+            {{ form_row(form.q) }}
+            
+            <!-- Sexe -->
+            <h4>Sexe :</h4>
+            {{ form_row(form.sexes) }}
+            
+            <!-- Vaccin -->
+            <h4>Vaccin :</h4>
+            {{ form_row(form.vaccins) }}
+            
+            <!-- Vermifugation -->
+            <h4>Vermifugation :</h4>
+            {{ form_row(form.vermifugations) }}
+            
+            <!-- Espèce -->
+            <h4>Espece :</h4>
+            {{ form_row(form.especes) }}
+            
+            <!-- Race -->
+            <h4>Race :</h4>
+            {{ form_row(form.races) }}
+            
+            <!-- Type de poil -->
+            <h4>Type de poil :</h4>
+            {{ form_row(form.poils) }}
+            
+            <!-- Couleur -->
+            <h4>Couleur :</h4>
+            {{ form_row(form.couleurs) }}
+            
+            <!-- Régime -->
+            <h4>Regime :</h4>
+            {{ form_row(form.regimes) }}
+            
+            <!-- Bouton de soumission du formulaire -->
+            <button type="submit" class="btn btn-success w-100">Filtrer</button>
+            {{ form_end(form) }}
         </div>
-    </div> 
+        <div class="col-md-9">
+            {% if annonces is empty %}
+            <!-- Aucune annonce à afficher -->
+            <h1>Aucune annonce à afficher.</h1>
+            {% else %}
+            <div class="row">
+                {% for annonce in annonces %}
+                <div class="card" style="width:300px; margin:8px;">
+                    <a href="{{ path('app_read_annonce', {id:annonce.id}) }}" style="text-decoration: none; color:black; margin-top: 20px;">
+                        {% if annonce.images %}
+                        <!-- Couper les images -->
+                        <!-- <div style="height:200px; overflow-y:hidden">
+                                        <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image">
+                                    </div> -->
+                        <!-- Ne pas couper les images (cela les déforme) -->
+                        <div class="d-flex justify-content-center">
+                            <img class="card-img-top" src="{{ asset('uploads/images/' ~ annonce.images[0].url) }}" alt="Card image" style="height:200px; width:200px;">
+                        </div>
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <!-- Titre de l'annonce -->
+                            <h4 class="card-title d-flex justify-content-center">{{ annonce.Titre }}</h4>
+                            <!-- Description de l'annonce -->
+                            <p class="card-text">{{ annonce.Description }}</p>
+                            <div class="mt-auto">
+                                <!-- Date de publication de l'annonce -->
+                                <p class="card-text"><small class="text-muted"><strong>Date de publication :</strong> {{ annonce.DatePublication | date('Y-m-d') }}</small></p>
+                                <!-- Date de dernière modification de l'annonce -->
+                                <p class="card-text"><small class="text-muted"><strong>Dernière modification :</strong> {{ annonce.DateModification | date('Y-m-d') }}</small></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
